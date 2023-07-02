@@ -6,4 +6,7 @@ SmallTiweeter for practice implement features
 * vite
 * react
 * javascript
+* node express
 
+# Start
+* yarn dev
