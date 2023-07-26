@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import "./App.css";
+import { Header } from "./Header";
 import { DefaultButton } from "./button/DefaultButton";
 import { DefaultContainer } from "./container/DefaultContainer";
 import { DefaultInput } from "./input/DefaultInput";
