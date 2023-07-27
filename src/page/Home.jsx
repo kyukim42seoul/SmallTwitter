@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Header } from "../Header";
 import { DefaultContainer } from "../container/DefaultContainer";
 import { ThreadCard } from "../component/ThreadCard";
+import { DefaultList } from "../list/DefaultList";
 
 export const Home = () => {
   const threadInfo = {
@@ -23,13 +24,11 @@ export const Home = () => {
     <div>
       <Header />
       <DefaultContainer direction="column">
-        <ThreadCard />
-        <ThreadCard />
-        <ThreadCard />
         {contentList.map((item, index) => (
           <div key={index}>{`${item.contentId}: ${item.userName}`}</div>
         ))}
       </DefaultContainer>
+      <DefaultList element="DefaultButton" length='3' />
     </div>
   );
 };

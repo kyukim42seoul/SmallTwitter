@@ -14,3 +14,5 @@ props -> {attribute, attribute} 이렇게 나눌 수 있는지 해보자
 button.text -> button.label 로 변경
 
 component 스타일에 필요한 attribute 들을 객체로 받게 바꾸자. 가독성이 안 좋다.
+
+DefaultList 컴포넌트를 만들어서 동적인 리스트를 만들고 싶은데 태그를 props 로 넘기더라도 해당 컴포넌트 파일을 import 해야해서 어렵다...
