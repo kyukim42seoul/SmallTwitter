@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { DefaultContainer } from "./container/DefaultContainer";
+import { useNavigate } from "react-router-dom";
 
 const StyledHeader = styled.div`
   display: flex;
@@ -10,9 +11,15 @@ const StyledHeader = styled.div`
 
 export const Header = () => {
   const navList = ["채팅", "대시보드"];
+  const navigate = useNavigate();
   return (
     <StyledHeader>
-      <img src="./chat.png" width="50px" height="50px" />
+      <img
+        src="./chat.png"
+        width="50px"
+        height="50px"
+        onClick={() => navigate("/")}
+      />
       <DefaultContainer direction="row" between="10px" padding="20px">
         {navList.map((item, index) => (
           <button

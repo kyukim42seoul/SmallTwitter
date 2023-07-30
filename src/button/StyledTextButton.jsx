@@ -16,7 +16,8 @@ export const StyledTextButton = styled.button`
   font-size: ${(props) => props.fontSize || "1em"};
   border: 0;
   background: transparent;
-  margin: 0px;
+  margin: 0;
+  cursor: pointer;
 
   &:hover {
     font-weight: bold;

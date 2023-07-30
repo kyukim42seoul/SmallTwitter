@@ -1,32 +1,15 @@
 /* App : page routing */
 
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./App.css";
-import { Header } from "./Header";
 import { DefaultButton } from "./button/DefaultButton";
 import { DefaultContainer } from "./container/DefaultContainer";
 import { DefaultInput } from "./input/DefaultInput";
 
 function App() {
-  const formData = {
-    user_id: "3",
-    user_name: "webUser",
-  };
-  const payLoad = JSON.stringify(formData);
-  const onClickHandler = () => {
-    console.log("Clicked!");
-    axios
-      .post("http://localhost:3000/post", payLoad, {
-        headers: { "Content-Type": `application/json` },
-      })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  };
-
+  const navigate = useNavigate();
   return (
     <div>
-      <button onClick={onClickHandler}>axios test</button>
-      <pre className="text"></pre>
       <DefaultContainer
         direction="column"
         padding="0px"
@@ -36,18 +19,19 @@ function App() {
       >
         <img src="./chat.png" width="100px" height="100px" />
         <DefaultContainer direction="column" padding="15px" between="15px">
+          <DefaultButton onClick={() => navigate("/home")} label="Home" />
           <DefaultInput placeholder="아이디를 입력해주세요" />
           <DefaultButton
             onClick={() => console.log(`signin clicked!`)}
-            text="회원가입"
+            label="회원가입"
           />
           <DefaultButton
             onClick={() => console.log(`google login clicked!`)}
-            text="Google 계정으로 로그인"
+            label="Google 계정으로 로그인"
           />
           <DefaultButton
             onClick={() => console.log(`github login clicked!`)}
-            text="github 계정으로 로그인"
+            label="github 계정으로 로그인"
           />
         </DefaultContainer>
       </DefaultContainer>

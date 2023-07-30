@@ -18,6 +18,7 @@ export const StyledDefaultButton = styled.button`
   border: 1px solid #bababa;
   background: #fff;
   margin: ${(props) => props.margin || "0"};
+  cursor: pointer;
 
   &:hover {
     background: #f1f1f1;

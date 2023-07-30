@@ -11,19 +11,23 @@ import styled from "styled-components";
 /**
  * return JSX div which has dynamic size, flex-direction, padding
  * @param {String} direction
+ * @param {String} justify
  * @param {String} padding
+ * @param {String} width
+ * @param {String} height
+ * @param {String} between
  * @returns {JSX}
  */
 
 export const StyledDefaultContainer = styled.div`
   display: flex;
   flex-direction: ${(props) => props.direction || "row"};
-  justify-content: center;
+  justify-content: ${(props) => props.justify || "center"};
   align-items: center;
   padding: ${(props) => props.padding || "0px"};
   width: ${(props) => props.width || "auto"};
   height: ${(props) => props.height || "auto"};
-  overflow: overlay;
+  overflow: auto;
 
   > :nth-child(n + 2) {
     margin: ${(props) => props.between || "0px"};

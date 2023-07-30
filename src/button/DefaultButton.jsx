@@ -1,13 +1,13 @@
 /**
  * get onClickHandler by props
- * get text by props
+ * get label by props
  */
 import { StyledDefaultButton } from "./StyledDefaultButton";
 
 /**
- * return JSX button which has cutomed onClickHandler, text, margin.
+ * return JSX button which has cutomed onClickHandler, label, margin.
  * @param {Function} onClick
- * @param {String} text
+ * @param {String} label
  * @param {String} margin
  * @returns {JSX}
  */
@@ -15,7 +15,7 @@ import { StyledDefaultButton } from "./StyledDefaultButton";
 export const DefaultButton = (props) => {
   return (
     <StyledDefaultButton onClick={props.onClick} margin={props.margin}>
-      {props.text}
+      {props.label}
     </StyledDefaultButton>
   );
 };
