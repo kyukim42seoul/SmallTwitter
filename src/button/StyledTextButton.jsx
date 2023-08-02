@@ -12,7 +12,7 @@ import styled from "styled-components";
 
 export const StyledTextButton = styled.button`
   width: auto;
-  height: 1em;
+  height: ${(props) => props.fontSize * 1.2 || "1.2em"};
   font-size: ${(props) => props.fontSize || "1em"};
   border: 0;
   background: transparent;

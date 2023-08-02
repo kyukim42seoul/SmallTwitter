@@ -11,6 +11,10 @@ const StyledHeader = styled.div`
 
 export const Header = () => {
   const navList = ["채팅", "대시보드"];
+  const navListMap = {
+    "스레드": "thread",
+    "프로필": "profile",
+  };
   const navigate = useNavigate();
   return (
     <StyledHeader>

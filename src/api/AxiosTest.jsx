@@ -2,10 +2,11 @@ import axios from "axios";
 
 /**
  * return button which send post with payload using axios
+ * payLoad object must have user_id, user_name property
  * @param {String} payLoad
  * @returns {JSX}
  */
-export const AxiosTest = () => {
+export const AxiosTest = ({payLoad}) => {
   const sendPost = () => {
     console.log("Clicked!");
     axios

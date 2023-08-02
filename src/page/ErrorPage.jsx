@@ -3,7 +3,7 @@
 import { useRouteError, useNavigate } from "react-router-dom";
 import { DefaultButton } from "../button/DefaultButton";
 
-export default function ErrorPage() {
+export const  ErrorPage = () => {
   const error = useRouteError();
   const navigate = useNavigate();
   console.log(error);
@@ -15,7 +15,7 @@ export default function ErrorPage() {
       <p>
         <i>{error.statusText || error.message}</i>
       </p>
-      <DefaultButton onClick={() => navigate("/")} text="Go Home" />
+      <DefaultButton onClick={() => navigate("/")} label="Go Home" />
     </div>
   );
 }

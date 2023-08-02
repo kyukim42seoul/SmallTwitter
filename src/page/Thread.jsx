@@ -1,9 +1,13 @@
-import { useState } from "react";
 import { Header } from "../Header";
 import { DefaultContainer } from "../container/DefaultContainer";
 import { ThreadCard } from "../component/ThreadCard";
+import styled from "styled-components";
 
-export const Home = () => {
+const StyledThread = styled.div`
+  
+`;
+
+export const Thread = () => {
   const threadInfo = {
     threadID: 0,
     userNickname: "",
@@ -14,13 +18,13 @@ export const Home = () => {
   };
 
   return (
-    <div>
+    <StyledThread>
       <Header />
       <DefaultContainer direction="column">
         <ThreadCard />
         <ThreadCard />
         <ThreadCard />
       </DefaultContainer>
-    </div>
+    </StyledThread>
   );
 };

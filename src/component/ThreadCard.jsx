@@ -15,6 +15,7 @@ const StyledThreadCard = styled.div`
   flex-direction: column;
   width: 900px;
   height: 200px;
+  padding: 20px;
   border-bottom: solid 1px;
 `;
 
@@ -28,7 +29,7 @@ export const ThreadCard = (props) => {
       <DefaultContainer
         direction="row"
         justify="space-between"
-        width="864px"
+        width="900px"
         height="36px"
       >
         <DefaultContainer direction="row" between="2px">
