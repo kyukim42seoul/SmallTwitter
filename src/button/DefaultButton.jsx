@@ -2,7 +2,7 @@
  * get onClickHandler by props
  * get label by props
  */
-import { StyledDefaultButton } from "./StyledDefaultButton";
+import { StyledDefaultButton } from "src/button/StyledDefaultButton";
 
 /**
  * return JSX button which has cutomed onClickHandler, label, margin.

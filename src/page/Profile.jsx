@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { DefaultContainer } from "../container/DefaultContainer";
-import { TextButton } from "../button/TextButton";
-import { MiniCard } from "../component/MiniCard";
+import { DefaultContainer } from "src/container/DefaultContainer";
+import { TextButton } from "src/button/TextButton";
+import { MiniCard } from "src/component/MiniCard";
 
 const StyledProfile = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ export const Profile = () => {
           </DefaultContainer>
         </DefaultContainer>
       </DefaultContainer>
-	  <MiniCard self={true}/>
+	  <MiniCard self={false}/>
     </StyledProfile>
   );
 };

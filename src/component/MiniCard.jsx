@@ -39,16 +39,23 @@
 */
 
 import styled from "styled-components";
-import { DefaultContainer } from "../container/DefaultContainer";
-import { TextButton } from "../button/TextButton";
+import { DefaultContainer } from "src/container/DefaultContainer";
+import { TextButton } from "src/button/TextButton";
 
 const StyledMiniCard = styled.div`
   display: flex;
   flex-direction: column;
-  width: 900px;
-  height: auto;
+  width: 860px;
+  height: 100px;
   padding: 20px;
   border-bottom: solid 1px;
+
+  .leftHead {
+	justify-content: left;
+  }
+  .rightHead {
+	justify-content: right;
+  }
 `;
 
 /**
@@ -64,51 +71,91 @@ export const MiniCard = (props) => {
   const commentCount = props.commentCount || 12;
   const tagList =
     props.tagList || ["apple", "banana", "orange"].map((tag) => prefix + tag);
-  return (
-    <StyledMiniCard>
-      <DefaultContainer
-        class="cardHead"
-        direction="row"
-        justify="space-between"
-        width="900px"
-        height="36px"
-      > {/* cardHead */}
-        {(!props.self) && <DefaultContainer direction="row" between="2px"> {/* profile, userID, userEmail */}
-          <img src="./chat.png" width="36px" height="36px" />
-          <TextButton label="kyukim" />
-          <TextButton label="kyukim@student.42seoul.kr" />
-          <p style={{ fontSize: "12px" }}>yyyy-mm-dd</p>
-        </DefaultContainer>}
-        <DefaultContainer direction="row" between="20px"> {/* 별, 더보기 */}
-          {!(props.self || props.isComment) && <img src="./off_star.png" width="36px" height="36px" />} {/* fav_star */}
-          {!(props.read_only) && <img src="./more.png" width="36px" height="36px" />} {/* more_dots */}
-        </DefaultContainer>
-      </DefaultContainer>
-      <pre
-        style={{
-          display: "flex",
-          alignItems: "center",
-          margin: "0",
-          padding: "0 36px",
-          height: "120px",
-          whiteSpace: "pre-wrap",
-        }}
-      >
-        여기는 글입니다. 여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
-        글입니다.여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
-        글입니다.여기는 글입니다.
-      </pre>
-      <DefaultContainer direction="row" justify="space-between">
-        <DefaultContainer>
-          <img src="comment.png" width="36px" height="36px" />
-          <TextButton label={String(commentCount)} />
-        </DefaultContainer>
-        <DefaultContainer>
-          {tagList.map((tag, index) => {
-            return <TextButton key={index} label={tag} />;
-          })}
-        </DefaultContainer>
-      </DefaultContainer>
-    </StyledMiniCard>
-  );
+  if (props.self) {
+	return (
+	  <StyledMiniCard>
+		<DefaultContainer direction="row" justify="space-between" width="inherited">
+			<pre style={{
+				display: "flex",
+				alignItems: "center",
+				margin: "0",
+				padding: "0",
+				height: "80px",
+				width: "80%",
+				whiteSpace: "normal",
+				fontSize: "16px",
+				}}
+			>
+			  여기는 글입니다. 여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
+			  글입니다.여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
+			  글입니다.여기는 글입니다.
+			</pre>
+			<DefaultContainer direction="row" justify="right" between="10px" width="82px"> {/* 별, 더보기 */}
+				{!(props.isComment) && <img src="./off_star.png" width="32px" height="32px" />} {/* fav_star */}
+				{!(props.read_only) && <img src="./more.png" width="32px" height="32px" />} {/* more_dots */}
+			</DefaultContainer>
+		</DefaultContainer>
+		<DefaultContainer direction="row" justify="space-between">
+		  <DefaultContainer>
+			<img src="comment.png" width="16px" height="16px" />
+			<TextButton label={String(commentCount)} fontSize="16px" />
+		  </DefaultContainer>
+		  <DefaultContainer>
+			{tagList.map((tag, index) => {
+			  return <TextButton key={index} label={tag} />;
+			})}
+		  </DefaultContainer>
+		</DefaultContainer>
+	  </StyledMiniCard>
+	)
+  } else {
+	  return (
+		<StyledMiniCard>
+		  <DefaultContainer
+			class="cardHead"
+			direction="row"
+			justify="space-between"
+			width="900px"
+			height="36px"
+		  > {/* cardHead */}
+			<DefaultContainer className="leftHead" direction="row" between="2px"> {/* profile, userID, userEmail */}
+			  <img src="./chat.png" width="36px" height="36px" />
+			  <TextButton label="kyukim" />
+			  <TextButton label="kyukim@student.42seoul.kr" />
+			  <p style={{ fontSize: "12px" }}>yyyy-mm-dd</p>
+			</DefaultContainer>
+			<DefaultContainer className="rightHead" direction="row" between="20px"> {/* 별, 더보기 */}
+			  {!(props.isComment) && <img src="./off_star.png" width="36px" height="36px" />} {/* fav_star */}
+			  {!(props.read_only) && <img src="./more.png" width="36px" height="36px" />} {/* more_dots */}
+			</DefaultContainer>
+		  </DefaultContainer>
+		  <pre
+			style={{
+			  display: "flex",
+			  alignItems: "center",
+			  margin: "0",
+			  padding: "0 36px",
+			  height: "120px",
+			  width: "auto",
+			  whiteSpace: "pre-wrap",
+			}}
+		  >
+			여기는 글입니다. 여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
+			글입니다.여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
+			글입니다.여기는 글입니다.
+		  </pre>
+		  <DefaultContainer direction="row" justify="space-between">
+			<DefaultContainer>
+			  <img src="comment.png" width="36px" height="36px" />
+			  <TextButton label={String(commentCount)} />
+			</DefaultContainer>
+			<DefaultContainer>
+			  {tagList.map((tag, index) => {
+				return <TextButton key={index} label={tag} />;
+			  })}
+			</DefaultContainer>
+		  </DefaultContainer>
+		</StyledMiniCard>
+	  );
+  }
 };

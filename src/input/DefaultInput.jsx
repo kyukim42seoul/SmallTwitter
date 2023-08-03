@@ -3,7 +3,7 @@
  * when it has check role, changable color and text onCheckFailed
  */
 
-import { StyledDefaultInput } from "./StyledDefaultInput";
+import { StyledDefaultInput } from "src/input/StyledDefaultInput";
 
 /**
  * return round style input with customed placeholder

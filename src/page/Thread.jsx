@@ -1,7 +1,7 @@
-import { Header } from "../Header";
-import { DefaultContainer } from "../container/DefaultContainer";
-import { ThreadCard } from "../component/ThreadCard";
 import styled from "styled-components";
+import { Header } from "src/component/Header";
+import { DefaultContainer } from "src/container/DefaultContainer";
+import { ThreadCard } from "src/component/ThreadCard";
 
 const StyledThread = styled.div`
   

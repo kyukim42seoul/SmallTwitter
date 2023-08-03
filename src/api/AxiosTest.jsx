@@ -6,6 +6,7 @@ import axios from "axios";
  * @param {String} payLoad
  * @returns {JSX}
  */
+
 export const AxiosTest = ({payLoad}) => {
   const sendPost = () => {
     console.log("Clicked!");

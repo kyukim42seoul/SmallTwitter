@@ -7,7 +7,8 @@
 import styled from "styled-components";
 
 /**
- * return customed JSX button
+ * @param {String} fontSize
+ * @return {JSX}
  */
 
 export const StyledTextButton = styled.button`

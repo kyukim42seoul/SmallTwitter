@@ -7,8 +7,6 @@
  * element 와 array 만 들어온 경우 array.length 만큼 반복 렌더링
  */
 
-import { DefaultButton } from "../button/DefaultButton";
-
 /**
  * @param {String} element 
  * @param {Array} dataArray

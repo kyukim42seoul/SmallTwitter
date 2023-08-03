@@ -3,7 +3,7 @@
  * get space between children by px
  */
 
-import { StyledDefaultContainer } from "./StyledDefaultContainer";
+import { StyledDefaultContainer } from "src/container/StyledDefaultContainer";
 
 /**
  * return JSX div for wrapping children. It has customed flex-direction and padding.

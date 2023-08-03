@@ -1,11 +1,11 @@
 /* App : page routing */
 
-import "./App.css";
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Routes, Route } from "react-router-dom";
-import { ErrorPage } from "./page/ErrorPage";
-import { Login } from "./page/Login";
-import { Thread } from "./page/Thread";
-import { Profile } from "./page/Profile";
+import { Login } from "src/page/Login";
+import { ErrorPage } from "src/page/ErrorPage";
+import { Thread } from "src/page/Thread";
+import { Profile } from "src/page/Profile";
+import "src/App.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
