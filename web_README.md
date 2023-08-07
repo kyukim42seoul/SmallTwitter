@@ -1,3 +1,13 @@
+## Commands
+* yarn : 패키지 설치
+* yarn dev : 라이브 서버 실행
+* yarn storybook : 스토리북 실행
+* yarn tsc [fileName]: fileName 을 typescript 로 컴파일
+
+## 기술 스택
+* React + Typescript
+* Storybook
+
 2023-07-24
 
 - DefaultContainer 추가
@@ -45,5 +55,9 @@ DefaultContainer 가 너무 다양한 환경에서 쓰이면 UI 중 한 군데�
 * 특정 요소가 사라져도 상대적 위치를 유지하는 방법을 알고 싶다.
 
 ### 오늘 바꾼 것
-* 상대경로 import 에서 절대경로 import 로 변경
-* import 순서 정리: 라이브러리(1) 컴포넌트(2) CSS(3)
+* 피그마 디자인 잡기
+
+### 오늘의 이슈
+* storybook 적용
+  * yarn add 로 storybook 을 깔았는데 루트경로에 .storybook 폴더와 설정 파일이 생성되지 않는다.
+  * npx sb init 으로 위 문제는 해결되었지만 해당 모듈 내의 require() 문법 지원 이슈로 실행되지 않음.

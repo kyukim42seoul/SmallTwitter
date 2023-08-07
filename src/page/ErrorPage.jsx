@@ -1,7 +1,7 @@
 /* useRouteError 가 error 객체를 반환해준다. 해당 객체는 스테이터스 관련 문장 혹은 메세지를 가지고 있다 */
 
 import { useRouteError, useNavigate } from "react-router-dom";
-import { DefaultButton } from "src/button/DefaultButton";
+import { DefaultButton } from "src/button/DefaultButton.jsx";
 
 export const  ErrorPage = () => {
   const error = useRouteError();

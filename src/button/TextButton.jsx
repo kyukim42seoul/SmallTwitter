@@ -1,4 +1,4 @@
-import { StyledTextButton } from "src/button/StyledTextButton";
+import { StyledTextButton } from "src/button/StyledTextButton.jsx";
 
 /**
  * return JSX button for text which has cutomed onClickHandler, text, font-size

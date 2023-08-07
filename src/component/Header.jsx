@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { DefaultContainer } from "src/container/DefaultContainer";
+import { DefaultContainer } from "src/container/DefaultContainer.jsx";
 
 const StyledHeader = styled.div`
   display: flex;

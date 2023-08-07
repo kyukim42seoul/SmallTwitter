@@ -7,8 +7,8 @@
 */
 
 import styled from "styled-components";
-import { DefaultContainer } from "src/container/DefaultContainer";
-import { TextButton } from "src/button/TextButton";
+import { DefaultContainer } from "src/container/DefaultContainer.jsx";
+import { TextButton } from "src/button/TextButton.jsx";
 
 const StyledThreadCard = styled.div`
   display: flex;

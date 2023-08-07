@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+	  "module": "ES2022",
+	  "noImplicitAny": true,
+	  "removeComments": true,
+	  "strictNullChecks": true,
+	  "allowImportingTsExtensions": true,
+	},
+	"include": ["src"]
+  }

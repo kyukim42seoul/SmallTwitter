@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { DefaultContainer } from "src/container/DefaultContainer";
-import { AxiosTest} from "src/api/AxiosTest";
-import { DefaultButton } from "src/button/DefaultButton";
-import { DefaultInput } from "src/input/DefaultInput";
+import { DefaultContainer } from "src/container/DefaultContainer.jsx";
+import { AxiosTest} from "src/api/AxiosTest.jsx";
+import { DefaultButton } from "src/button/DefaultButton.jsx";
+import { DefaultInput } from "src/input/DefaultInput.jsx";
 
 const StyledLogin = styled.div`
   
