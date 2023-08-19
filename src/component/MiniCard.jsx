@@ -29,7 +29,7 @@
   Component hidden logic
 
   profile, userID, fav_star: self(boolean)
-  more_dots: read_only(boolean)
+  more_dots: readOnly(boolean)
   tags, fav_star: isComment(boolean)
   fav_star: self(false) && isComment(false)
 */
@@ -59,19 +59,21 @@ const StyledMiniCard = styled.div`
 `;
 
 /**
- * return customed ThreadCard by self, read_only, isComment
+ * return customed ThreadCard by self, readOnly, isComment
  * @param {boolean} self
  * @param {boolean} readOnly
  * @param {boolean} isComment
+ * @param {Number} commentCount
+ * @param {Array<String>} tagList
  * @returns {JSX}
  */
 
-export const MiniCard = (props) => {
+export const MiniCard = ({self, readOnly, isComment, ...props}) => {
   const prefix = "#";
   const commentCount = props.commentCount || 12;
   const tagList =
     props.tagList || ["apple", "banana", "orange"].map((tag) => prefix + tag);
-  if (props.self) {
+  if (self) {
 	return (
 	  <StyledMiniCard>
 		<DefaultContainer direction="row" justify="space-between" width="inherited">
@@ -91,8 +93,8 @@ export const MiniCard = (props) => {
 			  글입니다.여기는 글입니다.
 			</pre>
 			<DefaultContainer direction="row" justify="right" between="10px" width="82px"> {/* 별, 더보기 */}
-				{!(props.isComment) && <img src="./off_star.png" width="32px" height="32px" />} {/* fav_star */}
-				{!(props.read_only) && <img src="./more.png" width="32px" height="32px" />} {/* more_dots */}
+				{!(isComment) && <img src="./off_star.png" width="32px" height="32px" />} {/* fav_star */}
+				{!(readOnly) && <img src="./more.png" width="32px" height="32px" />} {/* more_dots */}
 			</DefaultContainer>
 		</DefaultContainer>
 		<DefaultContainer direction="row" justify="space-between">
@@ -125,8 +127,8 @@ export const MiniCard = (props) => {
 			  <p style={{ fontSize: "12px" }}>yyyy-mm-dd</p>
 			</DefaultContainer>
 			<DefaultContainer className="rightHead" direction="row" between="20px"> {/* 별, 더보기 */}
-			  {!(props.isComment) && <img src="./off_star.png" width="36px" height="36px" />} {/* fav_star */}
-			  {!(props.read_only) && <img src="./more.png" width="36px" height="36px" />} {/* more_dots */}
+			  {!(isComment) && <img src="./off_star.png" width="36px" height="36px" />} {/* fav_star */}
+			  {!(readOnly) && <img src="./more.png" width="36px" height="36px" />} {/* more_dots */}
 			</DefaultContainer>
 		  </DefaultContainer>
 		  <pre

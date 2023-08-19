@@ -61,3 +61,9 @@ DefaultContainer 가 너무 다양한 환경에서 쓰이면 UI 중 한 군데�
 * storybook 적용
   * yarn add 로 storybook 을 깔았는데 루트경로에 .storybook 폴더와 설정 파일이 생성되지 않는다.
   * npx sb init 으로 위 문제는 해결되었지만 해당 모듈 내의 require() 문법 지원 이슈로 실행되지 않음.
+* 로직 흐름 다듬기 : 2023.08.19
+  * Login
+    * form vaildation
+    * send request
+  * id, password 를 각각 형태에 맞는 정규표현식으로 점검.
+  * 점검에 통과한 경우 다음 동작 >> 비밀번호 입력 노출, id/pw 인증 요청(/validation)

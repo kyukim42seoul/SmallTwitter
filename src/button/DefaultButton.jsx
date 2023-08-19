@@ -12,10 +12,10 @@ import { StyledDefaultButton } from "src/button/StyledDefaultButton.jsx";
  * @returns {JSX}
  */
 
-export const DefaultButton = (props) => {
+export const DefaultButton = ({onClick, label, margin, ...props}) => {
   return (
-    <StyledDefaultButton onClick={props.onClick} margin={props.margin}>
-      {props.label}
+    <StyledDefaultButton onClick={onClick} margin={margin}>
+      {label}
     </StyledDefaultButton>
   );
 };

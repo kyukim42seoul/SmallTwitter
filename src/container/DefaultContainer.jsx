@@ -16,21 +16,21 @@ import { StyledDefaultContainer } from "src/container/StyledDefaultContainer.jsx
  * @returns {JSX}
  */
 
-export const DefaultContainer = (props) => {
-  let between = `0`;
-  if (props.between && props.direction === "column") {
-    between = `${props.between} 0 0 0`;
-  } else if (props.between && props.direction === "row") {
-    between = `0 0 0 ${props.between}`;
+export const DefaultContainer = ({direction, justify, padding, between, width, height, ...props}) => {
+  let gap = `0`;
+  if (between && direction === "column") {
+    gap = `${between} 0 0 0`;
+  } else if (between && direction === "row") {
+    gap = `0 0 0 ${between}`;
   }
   return (
     <StyledDefaultContainer
-      direction={props.direction}
-      justify={props.justify}
-      padding={props.padding}
-      between={between}
-      width={props.width}
-      height={props.height}
+      direction={direction}
+      justify={justify}
+      padding={padding}
+      between={gap}
+      width={width}
+      height={height}
     >
       {props.children}
     </StyledDefaultContainer>
