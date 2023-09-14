@@ -5,12 +5,22 @@
 * yarn tsc [fileName]: fileName 을 typescript 로 컴파일
 
 ## 기술 스택
-* React + Typescript
+* React + Typescript + Vite
 * Storybook
+
+## 주요기능
+* 회원가입, 로그인
+* 즐겨찾기
+* 태그로 필터링 및 정렬
+* 대시보드
+* 권한 분리
+* CRUD
+* 모바일, 맥북, PC 반응형 레이아웃
+* (필요하다면 SSG, SSR)
 
 2023-07-24
 
-- DefaultContainer 추가
+- FlexContainer 추가
 - react-router 추가
 - ErrorPage 추가
 
@@ -28,7 +38,7 @@ component 스타일에 필요한 attribute 들을 객체로 받게 바꾸자. �
 DefaultList 컴포넌트를 만들어서 동적인 리스트를 만들고 싶은데 태그를 props 로 넘기더라도 해당 컴포넌트 파일을 import 해야해서 어렵다...
 
 ```javascript
-<DefaultContainer
+<FlexContainer
         direction="column"
         padding="0px"
         between="70px"
@@ -41,10 +51,10 @@ attribute 가 적으면서 재사용 가능한 컴포넌트...
 - default 시리즈를 상속받아서 각 element 이름으로 export 하자
 ```
 
-DefaultContainer 가 자식들의 크기에 맞게 커지려면?
+FlexContainer 가 자식들의 크기에 맞게 커지려면?
 
 맥북이랑 PC 에서 컴포넌트 크기 차이가 심해서 위화감을 준다. window 사이즈에 맞는 비율로 전면 수정해야 할 것 같다.
-DefaultContainer 가 너무 다양한 환경에서 쓰이면 UI 중 한 군데를 수정했을 때 다른 곳도 틀어질 위험이 있지 않나?
+FlexContainer 가 너무 다양한 환경에서 쓰이면 UI 중 한 군데를 수정했을 때 다른 곳도 틀어질 위험이 있지 않나?
 
 ### MiniCard
 * self, read_only, isComment 인자에 따라 구성요소가 카드 Head, Body 를 오가야해서 return 에 분기를 줬음.
@@ -53,9 +63,6 @@ DefaultContainer 가 너무 다양한 환경에서 쓰이면 UI 중 한 군데�
   * 나중에 MiniCard 에서 각각 다른 이름으로 2개의 컴포넌트를 export 하고, 상위 컴포넌트에서 조건부로 두 컴포넌트를 골라 렌더링하자
 * 부모, 자식, 형제간 서로 범위가 겹치지 않도록 하는 CSS 작성법을 알고 싶다.
 * 특정 요소가 사라져도 상대적 위치를 유지하는 방법을 알고 싶다.
-
-### 오늘 바꾼 것
-* 피그마 디자인 잡기
 
 ### 오늘의 이슈
 * storybook 적용
@@ -67,3 +74,15 @@ DefaultContainer 가 너무 다양한 환경에서 쓰이면 UI 중 한 군데�
     * send request
   * id, password 를 각각 형태에 맞는 정규표현식으로 점검.
   * 점검에 통과한 경우 다음 동작 >> 비밀번호 입력 노출, id/pw 인증 요청(/validation)
+* 사전에 정의해 둔 스타일을 외부에서 주입 할 방법이 없을까? : 2023.08.22
+
+### Storybook
+* 설치 커맨드 : npx storybook@latest init
+* src/stories 안의 파일들로 돌아감
+* ComponentName.stories.js 에서 해당 컴포넌트를 import 해서 작동
+* Card 컴포넌트 만들어 보는 중...
+* 주의사항
+  * .stories.js 파일은 마지막에 만들 것 : 이 파일을 만들면 스토리북이 실시간 렌더링을 시도한다.
+
+### StyledComponent
+* StyledComponent 를 사용할 때 바로 사용하면 기존 HTML 와 괴리감이 크지 않지만 ReactComponent 로 래핑하면 모든 속성을 받고 다시 넘겨줘야해서 불편하다.

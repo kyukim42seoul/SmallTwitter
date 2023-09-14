@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { DefaultContainer } from "src/container/DefaultContainer.jsx";
+import { FlexContainer } from "src/container/FlexContainer.jsx";
 
 const StyledHeader = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ export const Header = () => {
         height="50px"
         onClick={() => navigate("/")}
       />
-      <DefaultContainer direction="row" between="10px" padding="20px">
+      <FlexContainer direction="row" between="10px" padding="20px">
         {navList.map((item, index) => (
           <button
             key={index}
@@ -34,7 +34,7 @@ export const Header = () => {
             {item}
           </button>
         ))}
-      </DefaultContainer>
+      </FlexContainer>
     </StyledHeader>
   );
 };

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { Header } from "src/component/Header.jsx";
-import { DefaultContainer } from "src/container/DefaultContainer.jsx";
+import { FlexContainer } from "src/container/FlexContainer.jsx";
 import { ThreadCard } from "src/component/ThreadCard.jsx";
 
-const StyledThread = styled.div`
+const StyledWrapper = styled.div`
   
 `;
 
@@ -18,13 +18,13 @@ export const Thread = () => {
   };
 
   return (
-    <StyledThread>
+    <StyledWrapper>
       <Header />
-      <DefaultContainer direction="column">
+      <FlexContainer direction="column">
         <ThreadCard />
         <ThreadCard />
         <ThreadCard />
-      </DefaultContainer>
-    </StyledThread>
+      </FlexContainer>
+    </StyledWrapper>
   );
 };

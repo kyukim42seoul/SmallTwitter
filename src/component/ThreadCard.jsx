@@ -7,7 +7,7 @@
 */
 
 import styled from "styled-components";
-import { DefaultContainer } from "src/container/DefaultContainer.jsx";
+import { FlexContainer } from "src/container/FlexContainer.jsx";
 import { TextButton } from "src/button/TextButton.jsx";
 
 const StyledThreadCard = styled.div`
@@ -26,23 +26,23 @@ export const ThreadCard = (props) => {
     props.tagList || ["apple", "banana", "orange"].map((tag) => prefix + tag);
   return (
     <StyledThreadCard>
-      <DefaultContainer
+      <FlexContainer
         direction="row"
         justify="space-between"
         width="900px"
         height="36px"
       >
-        <DefaultContainer direction="row" between="2px">
+        <FlexContainer direction="row" between="2px">
           <img src="./chat.png" width="36px" height="36px" />
           <TextButton label="kyukim" />
           <TextButton label="kyukim@student.42seoul.kr" />
           <p style={{ fontSize: "12px" }}>yyyy-mm-dd</p>
-        </DefaultContainer>
-        <DefaultContainer direction="row" between="20px">
+        </FlexContainer>
+        <FlexContainer direction="row" between="20px">
           <img src="./off_star.png" width="36px" height="36px" />
           <img src="./more.png" width="36px" height="36px" />
-        </DefaultContainer>
-      </DefaultContainer>
+        </FlexContainer>
+      </FlexContainer>
       <pre
         style={{
           display: "flex",
@@ -57,17 +57,17 @@ export const ThreadCard = (props) => {
         글입니다.여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
         글입니다.여기는 글입니다.
       </pre>
-      <DefaultContainer direction="row" justify="space-between">
-        <DefaultContainer>
+      <FlexContainer direction="row" justify="space-between">
+        <FlexContainer>
           <img src="comment.png" width="36px" height="36px" />
           <TextButton label={String(commentCount)} />
-        </DefaultContainer>
-        <DefaultContainer>
+        </FlexContainer>
+        <FlexContainer>
           {tagList.map((tag, index) => {
             return <TextButton key={index} label={tag} />;
           })}
-        </DefaultContainer>
-      </DefaultContainer>
+        </FlexContainer>
+      </FlexContainer>
     </StyledThreadCard>
   );
 };

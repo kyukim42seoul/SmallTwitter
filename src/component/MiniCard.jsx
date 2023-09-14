@@ -39,7 +39,7 @@
 */
 
 import styled from "styled-components";
-import { DefaultContainer } from "src/container/DefaultContainer.jsx";
+import { FlexContainer } from "src/container/FlexContainer.jsx";
 import { TextButton } from "src/button/TextButton.jsx";
 
 const StyledMiniCard = styled.div`
@@ -76,7 +76,7 @@ export const MiniCard = ({self, readOnly, isComment, ...props}) => {
   if (self) {
 	return (
 	  <StyledMiniCard>
-		<DefaultContainer direction="row" justify="space-between" width="inherited">
+		<FlexContainer direction="row" justify="space-between" width="inherited">
 			<pre style={{
 				display: "flex",
 				alignItems: "center",
@@ -92,45 +92,45 @@ export const MiniCard = ({self, readOnly, isComment, ...props}) => {
 			  글입니다.여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
 			  글입니다.여기는 글입니다.
 			</pre>
-			<DefaultContainer direction="row" justify="right" between="10px" width="82px"> {/* 별, 더보기 */}
+			<FlexContainer direction="row" justify="right" between="10px" width="82px"> {/* 별, 더보기 */}
 				{!(isComment) && <img src="./off_star.png" width="32px" height="32px" />} {/* fav_star */}
 				{!(readOnly) && <img src="./more.png" width="32px" height="32px" />} {/* more_dots */}
-			</DefaultContainer>
-		</DefaultContainer>
-		<DefaultContainer direction="row" justify="space-between">
-		  <DefaultContainer>
+			</FlexContainer>
+		</FlexContainer>
+		<FlexContainer direction="row" justify="space-between">
+		  <FlexContainer>
 			<img src="comment.png" width="16px" height="16px" />
 			<TextButton label={String(commentCount)} fontSize="16px" />
-		  </DefaultContainer>
-		  <DefaultContainer>
+		  </FlexContainer>
+		  <FlexContainer>
 			{tagList.map((tag, index) => {
 			  return <TextButton key={index} label={tag} />;
 			})}
-		  </DefaultContainer>
-		</DefaultContainer>
+		  </FlexContainer>
+		</FlexContainer>
 	  </StyledMiniCard>
 	)
   } else {
 	  return (
 		<StyledMiniCard>
-		  <DefaultContainer
+		  <FlexContainer
 			class="cardHead"
 			direction="row"
 			justify="space-between"
 			width="900px"
 			height="36px"
 		  > {/* cardHead */}
-			<DefaultContainer className="leftHead" direction="row" between="2px"> {/* profile, userID, userEmail */}
+			<FlexContainer className="leftHead" direction="row" between="2px"> {/* profile, userID, userEmail */}
 			  <img src="./chat.png" width="36px" height="36px" />
 			  <TextButton label="kyukim" />
 			  <TextButton label="kyukim@student.42seoul.kr" />
 			  <p style={{ fontSize: "12px" }}>yyyy-mm-dd</p>
-			</DefaultContainer>
-			<DefaultContainer className="rightHead" direction="row" between="20px"> {/* 별, 더보기 */}
+			</FlexContainer>
+			<FlexContainer className="rightHead" direction="row" between="20px"> {/* 별, 더보기 */}
 			  {!(isComment) && <img src="./off_star.png" width="36px" height="36px" />} {/* fav_star */}
 			  {!(readOnly) && <img src="./more.png" width="36px" height="36px" />} {/* more_dots */}
-			</DefaultContainer>
-		  </DefaultContainer>
+			</FlexContainer>
+		  </FlexContainer>
 		  <pre
 			style={{
 			  display: "flex",
@@ -146,17 +146,17 @@ export const MiniCard = ({self, readOnly, isComment, ...props}) => {
 			글입니다.여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
 			글입니다.여기는 글입니다.
 		  </pre>
-		  <DefaultContainer direction="row" justify="space-between">
-			<DefaultContainer>
+		  <FlexContainer direction="row" justify="space-between">
+			<FlexContainer>
 			  <img src="comment.png" width="36px" height="36px" />
 			  <TextButton label={String(commentCount)} />
-			</DefaultContainer>
-			<DefaultContainer>
+			</FlexContainer>
+			<FlexContainer>
 			  {tagList.map((tag, index) => {
 				return <TextButton key={index} label={tag} />;
 			  })}
-			</DefaultContainer>
-		  </DefaultContainer>
+			</FlexContainer>
+		  </FlexContainer>
 		</StyledMiniCard>
 	  );
   }

@@ -1,17 +1,6 @@
-/**
- * become little darker onHover
- * become more darker onActive
- */
-
 import styled from "styled-components";
 
-/**
- * return JSX button which has customed margin.
- * @param {String} margin
- * @returns {JSX}
- */
-
-export const StyledDefaultButton = styled.button`
+export const CustomButton = styled.button`
   width: 250px;
   height: 40px;
   border-radius: 30px;
