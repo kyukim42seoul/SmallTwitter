@@ -40,7 +40,7 @@
 
 import styled from "styled-components";
 import { FlexContainer } from "src/container/FlexContainer.jsx";
-import { TextButton } from "src/button/TextButton.jsx";
+import { StyledTextButton } from "src/styled/StyledTextButton.js";
 
 const StyledMiniCard = styled.div`
   display: flex;
@@ -51,10 +51,10 @@ const StyledMiniCard = styled.div`
   border-bottom: solid 1px;
 
   .leftHead {
-	justify-content: left;
+    justify-content: left;
   }
   .rightHead {
-	justify-content: right;
+    justify-content: right;
   }
 `;
 
@@ -68,96 +68,128 @@ const StyledMiniCard = styled.div`
  * @returns {JSX}
  */
 
-export const MiniCard = ({self, readOnly, isComment, ...props}) => {
+export const MiniCard = ({ self, readOnly, isComment, ...props }) => {
   const prefix = "#";
   const commentCount = props.commentCount || 12;
   const tagList =
     props.tagList || ["apple", "banana", "orange"].map((tag) => prefix + tag);
   if (self) {
-	return (
-	  <StyledMiniCard>
-		<FlexContainer direction="row" justify="space-between" width="inherited">
-			<pre style={{
-				display: "flex",
-				alignItems: "center",
-				margin: "0",
-				padding: "0",
-				height: "80px",
-				width: "80%",
-				whiteSpace: "normal",
-				fontSize: "16px",
-				}}
-			>
-			  여기는 글입니다. 여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
-			  글입니다.여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
-			  글입니다.여기는 글입니다.
-			</pre>
-			<FlexContainer direction="row" justify="right" between="10px" width="82px"> {/* 별, 더보기 */}
-				{!(isComment) && <img src="./off_star.png" width="32px" height="32px" />} {/* fav_star */}
-				{!(readOnly) && <img src="./more.png" width="32px" height="32px" />} {/* more_dots */}
-			</FlexContainer>
-		</FlexContainer>
-		<FlexContainer direction="row" justify="space-between">
-		  <FlexContainer>
-			<img src="comment.png" width="16px" height="16px" />
-			<TextButton label={String(commentCount)} fontSize="16px" />
-		  </FlexContainer>
-		  <FlexContainer>
-			{tagList.map((tag, index) => {
-			  return <TextButton key={index} label={tag} />;
-			})}
-		  </FlexContainer>
-		</FlexContainer>
-	  </StyledMiniCard>
-	)
+    return (
+      <StyledMiniCard>
+        <FlexContainer
+          direction="row"
+          justify="space-between"
+          width="inherited"
+        >
+          <pre
+            style={{
+              display: "flex",
+              alignItems: "center",
+              margin: "0",
+              padding: "0",
+              height: "80px",
+              width: "80%",
+              whiteSpace: "normal",
+              fontSize: "16px",
+            }}
+          >
+            여기는 글입니다. 여기는 글입니다.여기는 글입니다.여기는
+            글입니다.여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
+            글입니다.여기는 글입니다.여기는 글입니다.
+          </pre>
+          <FlexContainer
+            direction="row"
+            justify="right"
+            between="10px"
+            width="82px"
+          >
+            {" "}
+            {/* 별, 더보기 */}
+            {!isComment && (
+              <img src="./off_star.png" width="32px" height="32px" />
+            )}{" "}
+            {/* fav_star */}
+            {!readOnly && (
+              <img src="./more.png" width="32px" height="32px" />
+            )}{" "}
+            {/* more_dots */}
+          </FlexContainer>
+        </FlexContainer>
+        <FlexContainer direction="row" justify="space-between">
+          <FlexContainer>
+            <img src="comment.png" width="16px" height="16px" />
+            <StyledTextButton fontSize="16px">
+              {String(commentCount)}
+            </StyledTextButton>
+          </FlexContainer>
+          <FlexContainer>
+            {tagList.map((tag, index) => {
+              return <StyledTextButton key={index}>{tag}</StyledTextButton>;
+            })}
+          </FlexContainer>
+        </FlexContainer>
+      </StyledMiniCard>
+    );
   } else {
-	  return (
-		<StyledMiniCard>
-		  <FlexContainer
-			class="cardHead"
-			direction="row"
-			justify="space-between"
-			width="900px"
-			height="36px"
-		  > {/* cardHead */}
-			<FlexContainer className="leftHead" direction="row" between="2px"> {/* profile, userID, userEmail */}
-			  <img src="./chat.png" width="36px" height="36px" />
-			  <TextButton label="kyukim" />
-			  <TextButton label="kyukim@student.42seoul.kr" />
-			  <p style={{ fontSize: "12px" }}>yyyy-mm-dd</p>
-			</FlexContainer>
-			<FlexContainer className="rightHead" direction="row" between="20px"> {/* 별, 더보기 */}
-			  {!(isComment) && <img src="./off_star.png" width="36px" height="36px" />} {/* fav_star */}
-			  {!(readOnly) && <img src="./more.png" width="36px" height="36px" />} {/* more_dots */}
-			</FlexContainer>
-		  </FlexContainer>
-		  <pre
-			style={{
-			  display: "flex",
-			  alignItems: "center",
-			  margin: "0",
-			  padding: "0 36px",
-			  height: "120px",
-			  width: "auto",
-			  whiteSpace: "pre-wrap",
-			}}
-		  >
-			여기는 글입니다. 여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
-			글입니다.여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
-			글입니다.여기는 글입니다.
-		  </pre>
-		  <FlexContainer direction="row" justify="space-between">
-			<FlexContainer>
-			  <img src="comment.png" width="36px" height="36px" />
-			  <TextButton label={String(commentCount)} />
-			</FlexContainer>
-			<FlexContainer>
-			  {tagList.map((tag, index) => {
-				return <TextButton key={index} label={tag} />;
-			  })}
-			</FlexContainer>
-		  </FlexContainer>
-		</StyledMiniCard>
-	  );
+    return (
+      <StyledMiniCard>
+        <FlexContainer
+          class="cardHead"
+          direction="row"
+          justify="space-between"
+          width="900px"
+          height="36px"
+        >
+          {" "}
+          {/* cardHead */}
+          <FlexContainer className="leftHead" direction="row" between="2px">
+            {" "}
+            {/* profile, userID, userEmail */}
+            <img src="./chat.png" width="36px" height="36px" />
+            <StyledTextButton>kyukim</StyledTextButton>
+            <StyledTextButton>kyukim@student.42seoul.kr</StyledTextButton>
+            <p style={{ fontSize: "12px" }}>yyyy-mm-dd</p>
+          </FlexContainer>
+          <FlexContainer className="rightHead" direction="row" between="20px">
+            {" "}
+            {/* 별, 더보기 */}
+            {!isComment && (
+              <img src="./off_star.png" width="36px" height="36px" />
+            )}{" "}
+            {/* fav_star */}
+            {!readOnly && (
+              <img src="./more.png" width="36px" height="36px" />
+            )}{" "}
+            {/* more_dots */}
+          </FlexContainer>
+        </FlexContainer>
+        <pre
+          style={{
+            display: "flex",
+            alignItems: "center",
+            margin: "0",
+            padding: "0 36px",
+            height: "120px",
+            width: "auto",
+            whiteSpace: "pre-wrap",
+          }}
+        >
+          여기는 글입니다. 여기는 글입니다.여기는 글입니다.여기는
+          글입니다.여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
+          글입니다.여기는 글입니다.여기는 글입니다.
+        </pre>
+        <FlexContainer direction="row" justify="space-between">
+          <FlexContainer>
+            <img src="comment.png" width="36px" height="36px" />
+            <StyledTextButton>{String(commentCount)}</StyledTextButton>
+          </FlexContainer>
+          <FlexContainer>
+            {tagList.map((tag, index) => {
+              return <StyledTextButton key={index}>{tag}</StyledTextButton>;
+            })}
+          </FlexContainer>
+        </FlexContainer>
+      </StyledMiniCard>
+    );
   }
 };

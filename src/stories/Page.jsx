@@ -6,7 +6,7 @@ import './page.css';
 export const Page = () => {
   const [user, setUser] = React.useState();
 
-  return (
+  return (R
     <article>
       <Header
         user={user}

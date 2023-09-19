@@ -6,25 +6,24 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { FlexContainer } from "src/container/FlexContainer.jsx";
-import { CustomButton } from "src/button/CustomButton.ts";
+import { StyledButton } from "src/styled/StyledButton.js";
 import { LoginForm } from "../component/LoginForm.jsx";
-import { Popup } from "../component/Popup.jsx";
+import { SignUpForm } from "../component/SignUpForm.jsx";
 import { useState } from "react";
 
-const StyledWrapper = styled.div`
-  
-`;
+const StyledWrapper = styled.div``;
 
 export const Login = () => {
-	const navigate = useNavigate();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <StyledWrapper>
-			<FlexContainer className="dev-header" direction="row" between="20px">
-          <CustomButton onClick={() => navigate("/thread")}>스레드</CustomButton>
-          <CustomButton onClick={() => navigate("/profile")}>프로필</CustomButton>
-			</FlexContainer>
+      <FlexContainer className="dev-header" direction="row" between="20px">
+        <StyledButton onClick={() => navigate("/thread")}>스레드</StyledButton>
+        <StyledButton onClick={() => navigate("/profile")}>프로필</StyledButton>
+        <StyledButton onClick={() => navigate("/empty")}>빈페이지</StyledButton>
+      </FlexContainer>
       <FlexContainer
         direction="column"
         padding="0px"
@@ -34,9 +33,9 @@ export const Login = () => {
       >
         <img src="./chat.png" width="100px" height="100px" />
         <LoginForm />
-        <CustomButton onClick={() => setIsOpen(true)}>회원가입</CustomButton>
-        {isOpen && <Popup setIsOpen={setIsOpen} />}
+        <StyledButton onClick={() => setIsOpen(true)}>회원가입</StyledButton>
+        {isOpen && <SignUpForm setIsOpen={setIsOpen} />}
       </FlexContainer>
     </StyledWrapper>
   );
-}
+};

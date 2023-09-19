@@ -8,7 +8,7 @@
 
 import styled from "styled-components";
 import { FlexContainer } from "src/container/FlexContainer.jsx";
-import { TextButton } from "src/button/TextButton.jsx";
+import { StyledTextButton } from "src/styled/StyledTextButton.js";
 
 const StyledThreadCard = styled.div`
   display: flex;
@@ -34,8 +34,8 @@ export const ThreadCard = (props) => {
       >
         <FlexContainer direction="row" between="2px">
           <img src="./chat.png" width="36px" height="36px" />
-          <TextButton label="kyukim" />
-          <TextButton label="kyukim@student.42seoul.kr" />
+          <StyledTextButton>kyukim</StyledTextButton>
+          <StyledTextButton>kyukim@student.42seoul.kr</StyledTextButton>
           <p style={{ fontSize: "12px" }}>yyyy-mm-dd</p>
         </FlexContainer>
         <FlexContainer direction="row" between="20px">
@@ -60,11 +60,11 @@ export const ThreadCard = (props) => {
       <FlexContainer direction="row" justify="space-between">
         <FlexContainer>
           <img src="comment.png" width="36px" height="36px" />
-          <TextButton label={String(commentCount)} />
+          <StyledTextButton>{String(commentCount)}</StyledTextButton>
         </FlexContainer>
         <FlexContainer>
           {tagList.map((tag, index) => {
-            return <TextButton key={index} label={tag} />;
+            return <StyledTextButton key={index}>{tag}</StyledTextButton>;
           })}
         </FlexContainer>
       </FlexContainer>

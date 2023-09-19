@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CustomInput = styled.input`
+export const StyledInput = styled.input`
   width: 250px;
   height: 40px;
   flex-shrink: 0;
@@ -13,4 +13,3 @@ export const CustomInput = styled.input`
     background: #e7e7e7;
   }
 `;
-

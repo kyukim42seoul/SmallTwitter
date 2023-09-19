@@ -1,10 +1,17 @@
 /* App : page routing */
 
-import { RouterProvider, createBrowserRouter, createRoutesFromElements, Routes, Route } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Routes,
+  Route,
+} from "react-router-dom";
 import { Login } from "src/page/Login.jsx";
 import { ErrorPage } from "src/page/ErrorPage.jsx";
 import { Thread } from "src/page/Thread.jsx";
 import { Profile } from "src/page/Profile.jsx";
+import { Empty } from "./page/Empty.jsx";
 import "src/App.css";
 
 const router = createBrowserRouter(
@@ -13,12 +20,11 @@ const router = createBrowserRouter(
       <Route path="/" element={<Login />} errorElement={<ErrorPage />} />
       <Route path="/thread" element={<Thread />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/empty" element={<Empty />} />
     </>
   )
 );
 
 export function App() {
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 }
