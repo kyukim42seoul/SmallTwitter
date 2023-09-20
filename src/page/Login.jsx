@@ -7,8 +7,8 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { FlexContainer } from "src/container/FlexContainer.jsx";
 import { StyledButton } from "src/styled/StyledButton.js";
-import { LoginForm } from "../component/LoginForm.jsx";
-import { SignUpForm } from "../component/SignUpForm.jsx";
+import { LoginForm } from "src/component/LoginForm.jsx";
+import { SignUpForm } from "src/component/SignUpForm.jsx";
 import { useState } from "react";
 
 const StyledWrapper = styled.div``;

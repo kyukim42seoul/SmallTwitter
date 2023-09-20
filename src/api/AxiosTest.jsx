@@ -20,3 +20,12 @@ export const AxiosTest = ({payLoad}) => {
 
   return <button onClick={sendPost}>POST</button>;
 };
+
+/**
+ * basic axios instance to localhost:3000 withCredentials
+ */
+export const axiosInstance = axios.create({
+  baseURL: "http://localhost:3000",
+  timeout: 1000,
+  withCredentials: true
+});

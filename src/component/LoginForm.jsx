@@ -8,7 +8,7 @@ import { FlexContainer } from "src/container/FlexContainer.jsx";
 import { StyledInput } from "src/styled/StyledInput.js";
 import { StyledButton } from "src/styled/StyledButton.js";
 import { keyDownHandler, isValidForm } from "src/utils/Utils.js";
-import { emailRegExp, passwordRegExp } from "../data/regex.js";
+import { emailRegExp, passwordRegExp } from "src/data/regex.js";
 
 export const LoginForm = () => {
   const [id, setId] = useState("");
