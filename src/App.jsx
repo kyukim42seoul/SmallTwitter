@@ -27,7 +27,9 @@ const router = createBrowserRouter(
   )
 );
 
-document.cookie = "logged_in=yes";
+if (document.cookie === []) {
+  document.cookie = "logged_in=yes";
+}
 
 export function App() {
   return <RouterProvider router={router} />;
