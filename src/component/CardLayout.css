@@ -1,0 +1,75 @@
+.card-wrapper {
+  max-width: 375px;
+  padding: 12px 16px;
+  font-size: 1.6rem;
+}
+
+.card-wrapper:hover {
+  background-color: #D9D9D9;
+}
+
+.card-side {
+  width: 52px;
+  padding-right: 12px;
+}
+
+.card-main {
+  width: 100%;
+}
+
+.card-header {
+  height: 20px;
+}
+
+.card-header-left {
+  display: flex;
+  gap: 8px;
+}
+
+.nick-name {
+  font-weight: bold;
+}
+
+.user-id {
+
+}
+
+.upload-time {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-header-right {
+
+}
+
+.favorite-button {
+
+}
+
+.favorite-count {
+
+}
+
+.more-button {
+ width: 20px;
+ height: 20px;
+}
+
+.more-detail {
+  position: relative;
+  width: 100px;
+  right: 80px;
+  background-color: #FFF;
+  z-index: 10;
+}
+
+.more-detail ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.more-detail button {
+  width: inherit;
+}

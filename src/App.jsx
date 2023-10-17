@@ -13,6 +13,8 @@ import { ErrorPage } from "src/page/ErrorPage.jsx";
 import { Thread } from "src/page/Thread.jsx";
 import { Profile } from "src/page/Profile.jsx";
 import { Empty } from "src/page/Empty.jsx";
+import { Post } from "./page/Post.jsx";
+import { Write } from "./page/Write.jsx";
 import "src/App.css";
 
 const router = createBrowserRouter(
@@ -23,14 +25,18 @@ const router = createBrowserRouter(
       <Route path="/thread" element={<Thread />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/empty" element={<Empty />} />
+      <Route path="/post" element={<Post />} />
+      <Route path="/write" element={<Write />} />
     </>
   )
 );
 
-if (document.cookie === []) {
+if (document.cookie === "") {
   document.cookie = "logged_in=yes";
 }
 
 export function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <RouterProvider router={router} />
+  );
 }

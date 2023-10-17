@@ -38,3 +38,16 @@ export const Header = () => {
     </StyledHeader>
   );
 };
+
+export const VerticalHeader = () => {
+  const navList = [];
+
+  return (
+    <header>
+      <Logo></Logo>
+      <nav>
+        {navList.map((category) => <a>{category}</a>)}
+      </nav>
+    </header>
+  );
+}

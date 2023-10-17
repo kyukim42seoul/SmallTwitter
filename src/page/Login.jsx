@@ -23,6 +23,7 @@ export const Login = () => {
         <StyledButton onClick={() => navigate("/thread")}>스레드</StyledButton>
         <StyledButton onClick={() => navigate("/profile")}>프로필</StyledButton>
         <StyledButton onClick={() => navigate("/empty")}>빈페이지</StyledButton>
+        <StyledButton onClick={() => navigate("/post")}>포스트</StyledButton>
       </FlexContainer>
       <FlexContainer
         direction="column"

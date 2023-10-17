@@ -5,8 +5,14 @@
 * yarn tsc [fileName]: fileName 을 typescript 로 컴파일
 
 ## 기술 스택
-* React + Typescript + Vite
+* React
+* Typescript
+* vite
+* styled-components
 * Storybook
+* react-route-dom
+* axios
+
 
 ## 주요기능
 * 회원가입, 로그인
