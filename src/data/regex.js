@@ -2,5 +2,4 @@
 export const emailRegExp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$";
 
 // 비밀번호 형식 : 대문자, 소문자, 지정된 특수문자, 숫자 포함해서 8 ~ 12자리
-export const passwordRegExp =
-  "^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,12}$";
+export const passwordRegExp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,12}$";

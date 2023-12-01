@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { isValidForm, keyDownHandler } from "src/utils/Utils.js";
+import { isValidForm, keyDownHandler } from "src/common/Utils.js";
 import { emailRegExp, passwordRegExp } from "src/data/regex.js";
 import { StyledButton } from "src/styled/StyledButton.js";
 import { StyledInput } from "src/styled/StyledInput.js";
@@ -30,7 +30,6 @@ export const SignUpForm = ({ setIsOpen }) => {
   const [newConfirmPassword, setNewConfirmPassword] = useState("");
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log("summit occured");
   };
   return (
     <StyledWrapper>

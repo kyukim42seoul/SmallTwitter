@@ -1,11 +1,7 @@
 import styled from "styled-components";
-import { Header } from "src/component/Header.jsx";
-import { FlexContainer } from "src/container/FlexContainer.jsx";
-import { ThreadCard } from "src/component/ThreadCard.jsx";
-
-const StyledWrapper = styled.div`
-  
-`;
+import { Header } from "src/component/Common/Header.jsx";
+import { FlexContainer } from "src/component/Common/FlexContainer.jsx";
+import { ThreadCard } from "src/component/Thread/ThreadCard.jsx";
 
 export const Thread = () => {
   const threadInfo = {
@@ -28,3 +24,7 @@ export const Thread = () => {
     </StyledWrapper>
   );
 };
+
+  const StyledWrapper = styled.div`
+    
+  `;

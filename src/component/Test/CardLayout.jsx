@@ -6,7 +6,7 @@
   small, full-size 로 나누자
 */
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./CardLayout.css";
 
 const getCommentByCardId = ({cardId}) => {};
@@ -24,9 +24,15 @@ const getCommentByCardId = ({cardId}) => {};
 
 export const CardLayout = (props) => {
   const {isMine, nickName, userId, uploadTime, isFavorite, favoriteCount, textContent, commentCount} = props;
-  // 일단 여기서 isFavorite 을 상태로 처리해서 렌덜이 결과를 확인하자. 나중에 Recoil 로 바꾸자.
+  // 여기서 isFavorite 을 상태로 처리해서 렌덜이 결과를 확인하자. 나중에 Recoil 로 바꾸자.
   const [currentFavorite, setCurrentFavorite] = useState(isFavorite);
   const [moreOpen, setMoreOpen] = useState(false);
+
+  // 기본 props 재가공
+  const userIdShortCut = "@" + userId.split("@")[0];
+  const uploadTimeShortCut = {};
+
+  const uploadTimeRef = useRef();
 
   return (
     <div className="card-wrapper" onClick={() => {}} style={{display: "flex"}}>
@@ -37,9 +43,9 @@ export const CardLayout = (props) => {
       </div>
       <div className="card-main" style={{display: "flex", flexDirection: "column"}}>
         <div className="card-header" style={{display: "flex"}}>
-          <div className="card-header-left">
+          <div className="card-header-left" style={{overflow:"hidden"}}>
             <span className="nick-name">{nickName}</span>
-            <span className="user-id">{userId}</span>
+            <span className="user-id">{userIdShortCut}</span>
             <span className="upload-time">{uploadTime}</span>
           </div>
           <div className="card-header-right" style={{display: "flex"}}>
@@ -68,7 +74,7 @@ export const CardLayout = (props) => {
 
         <div className="card-body">
           <div className="text-content">
-            <p>{textContent}</p>
+            <p style={{width:"inherit"}}>{textContent}</p>
           </div>
         </div>
 

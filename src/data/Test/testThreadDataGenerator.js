@@ -18,7 +18,7 @@ import {
   emailTail,
   quotes,
   tags,
-} from "src/data/sampleData.js";
+} from "src/data/Test/sampleData.js";
 
 const getRandomString = (stringArray) => {
   const randomIndex = Math.floor(Math.random() * stringArray.length);

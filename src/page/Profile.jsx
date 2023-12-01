@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { FlexContainer } from "src/container/FlexContainer.jsx";
+import { FlexContainer } from "src/component/Common/FlexContainer.jsx";
 import { StyledTextButton } from "src/styled/StyledTextButton.js";
-import { MiniCard } from "src/component/MiniCard.jsx";
+import { MiniCard } from "src/component/Profile/MiniCard.jsx";
 
 const StyledWrapper = styled.div`
   display: flex;

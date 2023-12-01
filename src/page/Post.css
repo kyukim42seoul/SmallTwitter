@@ -1,6 +1,9 @@
 .post-wrapper {
-  width: 375px;
-  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+  height: inherit;
+  padding: 0 1.6em;
 }
 
 .post-wrapper header {
@@ -10,7 +13,7 @@
 
 .post-header-right {
   display: flex;
-  gap: 12px;
+  gap: 1.2em;
 }
 
 .post-wrapper main {

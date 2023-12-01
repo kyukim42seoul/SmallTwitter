@@ -9,7 +9,6 @@ import axios from "axios";
 
 export const AxiosTest = ({payLoad}) => {
   const sendPost = () => {
-    console.log("Clicked!");
     axios
       .post("http://localhost:3000/post", payLoad, {
         headers: { "Content-Type": `application/json` },

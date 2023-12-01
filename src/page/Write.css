@@ -1,0 +1,10 @@
+.write-button-wrapper button {
+  height: 54px;
+  width: 54px;
+  border-radius: 27px;
+  background-color: #80ACEF;
+}
+
+.write-button-wrapper button:hover {
+  background-color: #6C98DB;
+}

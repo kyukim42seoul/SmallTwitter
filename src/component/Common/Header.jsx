@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { FlexContainer } from "src/container/FlexContainer.jsx";
+import { FlexContainer } from "src/component/Common/FlexContainer.jsx";
 
 const StyledHeader = styled.div`
   display: flex;
@@ -44,7 +44,6 @@ export const VerticalHeader = () => {
 
   return (
     <header>
-      <Logo></Logo>
       <nav>
         {navList.map((category) => <a>{category}</a>)}
       </nav>
