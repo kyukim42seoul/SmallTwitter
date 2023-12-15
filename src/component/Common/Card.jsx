@@ -1,15 +1,22 @@
 import styled from "styled-components";
 
+const Card = (props) => {
+  return (
+    <StyledCard {...props} />
+  );
+};
+
 /**
  * @param {String} color
  * @param {String} backgroundColor
  * @return {JSX}
  */
-export const RoundCard = styled.div`
+const StyledCard = styled.div`
   padding: 10px;
-  margin: 0;
   border-radius: 15px;
-  color: ${({ color }) => color || "black"};
+  color: ${({ color }) => color || var(--black)};
   background-color: ${({ backgroundColor }) =>
     backgroundColor || "transparent"};
 `;
+
+export default Card;

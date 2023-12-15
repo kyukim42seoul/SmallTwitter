@@ -14,19 +14,19 @@
 * Vite
 
 ## 파일 구조
-```JSON
-📦src
- ┣ 📂api
- ┣ 📂common
- ┣ 📂component
- ┃ ┣ 📂Common
- ┃ ┣ 📂Login
- ┃ ┣ 📂Profile
- ┃ ┗ 📂Thread
- ┣ 📂data
- ┣ 📂page
- ┣ 📂stories
- ┣ 📂styled
- ┣ 📜App.jsx
- ┣ 📜main.jsx
+```
+src
+ ┣ api
+ ┣ common
+ ┣ component
+ ┃ ┣ Common
+ ┃ ┣ Login
+ ┃ ┣ Profile
+ ┃ ┗ Thread
+ ┣ data
+ ┣ page
+ ┣ stories
+ ┣ styled
+ ┣ App.jsx
+ ┣ main.jsx
 ```

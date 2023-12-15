@@ -1,8 +1,40 @@
-/* fonts */
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap");
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Noto+Sans:wght@400&display=swap');
 
-/* Common CSS variables */
+
 :root {
+  /* Color  */
   --black: #181818;
+  --grey1: #F6F7F9;
+  --grey2: #EEF0F3;
+  --grey3: #D7DBDF; /* border 에 보통 사용 */
+  --grey4: #9FA6AE;
+  --grey5: #757B82;
   --white: #ffff;
+
+  --sucess: #5FCB62;
+  --warning: #E7882A;
+  --danger: #E64C40;
+  --dangerLigten: #E76157;
+  --dangerDarken: #C8443A;
+  --dangerDisabled: #F1B0AA;
+
+  --main: #1E80F0;
+  --mainLighten: #53A4F3;
+  --mainDarken: #0A6CDC;
+
+  /* Font  */
+  font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color: var(--black);
+  background-color: var(--white);
+  /*border: 1px solid var(--black);*/
+}
+
+button {
+  cursor: pointer;
+  border: 1px solid var(--grey3);
 }

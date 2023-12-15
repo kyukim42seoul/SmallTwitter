@@ -7,8 +7,8 @@
 */
 
 import styled from "styled-components";
-import { FlexContainer } from "src/component/Common/FlexContainer.jsx";
-import { StyledTextButton } from "src/styled/StyledTextButton.js";
+import FlexContainer from "src/component/Common/FlexContainer.jsx";
+import TextButton from "src/component/Common/TextButton.jsx";
 
 const StyledThreadCard = styled.div`
   display: flex;
@@ -34,8 +34,8 @@ export const ThreadCard = (props) => {
       >
         <FlexContainer direction="row" between="2px">
           <img src="./chat.png" width="36px" height="36px" />
-          <StyledTextButton>kyukim</StyledTextButton>
-          <StyledTextButton>kyukim@student.42seoul.kr</StyledTextButton>
+          <TextButton>kyukim</TextButton>
+          <TextButton>kyukim@student.42seoul.kr</TextButton>
           <p style={{ fontSize: "12px" }}>yyyy-mm-dd</p>
         </FlexContainer>
         <FlexContainer direction="row" between="20px">
@@ -60,11 +60,11 @@ export const ThreadCard = (props) => {
       <FlexContainer direction="row" justify="space-between">
         <FlexContainer>
           <img src="comment.png" width="36px" height="36px" />
-          <StyledTextButton>{String(commentCount)}</StyledTextButton>
+          <TextButton>{String(commentCount)}</TextButton>
         </FlexContainer>
         <FlexContainer>
           {tagList.map((tag, index) => {
-            return <StyledTextButton key={index}>{tag}</StyledTextButton>;
+            return <TextButton key={index}>{tag}</TextButton>;
           })}
         </FlexContainer>
       </FlexContainer>

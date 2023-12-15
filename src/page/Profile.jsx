@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { FlexContainer } from "src/component/Common/FlexContainer.jsx";
-import { StyledTextButton } from "src/styled/StyledTextButton.js";
+import FlexContainer from "src/component/Common/FlexContainer.jsx";
+import TextButton from "src/component/Common/TextButton.jsx";
 import { MiniCard } from "src/component/Profile/MiniCard.jsx";
 
 const StyledWrapper = styled.div`
@@ -26,9 +26,9 @@ export const Profile = () => {
             <p>user_email</p>
           </FlexContainer>
           <FlexContainer direction="row" between="10px">
-            <StyledTextButton>내 스레드</StyledTextButton>
-            <StyledTextButton>내가 쓴 댓글</StyledTextButton>
-            <StyledTextButton>즐겨찾기</StyledTextButton>
+            <TextButton>내 스레드</TextButton>
+            <TextButton>내가 쓴 댓글</TextButton>
+            <TextButton>즐겨찾기</TextButton>
           </FlexContainer>
         </FlexContainer>
       </FlexContainer>

@@ -4,9 +4,9 @@
  */
 
 import { useState, useEffect } from "react";
-import { FlexContainer } from "src/component/Common/FlexContainer.jsx";
-import { StyledInput } from "src/styled/StyledInput.js";
-import { StyledButton } from "src/styled/StyledButton.js";
+import FlexContainer from "src/component/Common/FlexContainer.jsx";
+import Input from "src/component/Common/Input.jsx";
+import Button from "src/component/Common/Button.jsx";
 import { keyDownHandler, isValidForm } from "src/common/Utils.js";
 import { emailRegExp, passwordRegExp } from "src/data/regex.js";
 import axios from "axios";
@@ -41,7 +41,7 @@ export const LoginForm = () => {
 
   return (
     <FlexContainer direction="column" padding="15px" between="15px">
-      <StyledInput
+      <Input
         placeholder={idPlaceholder}
         value={userEmail}
         onChange={(event)=>{setUserEmail(event.target.value)}}
@@ -53,7 +53,7 @@ export const LoginForm = () => {
         />
       {isValidId && (
         <>
-          <StyledInput
+          <Input
             type="password"
             placeholder="비밀번호를 입력해주세요"
             autoFocus={true}
@@ -68,14 +68,14 @@ export const LoginForm = () => {
         </>
       )}
       {isValidPassword && (
-        <StyledInput placeholder="어떤 닉네임을 사용하시겠습니까?" onKeyDown={(event)=> keyDownHandler(event, setNickname)} />
+        <Input placeholder="어떤 닉네임을 사용하시겠습니까?" onKeyDown={(event)=> keyDownHandler(event, setNickname)} />
       )}
-      <StyledButton onClick={() => console.log(`google login clicked!`)}>
+      <Button onClick={() => console.log(`google login clicked!`)}>
         Google 계정으로 로그인
-      </StyledButton>
-      <StyledButton onClick={() => console.log(`github login clicked!`)}>
+      </Button>
+      <Button onClick={() => console.log(`github login clicked!`)}>
         github 계정으로 로그인
-      </StyledButton>
+      </Button>
     </FlexContainer>
   );
 };

@@ -1,13 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { FlexContainer } from "src/component/Common/FlexContainer.jsx";
-
-const StyledHeader = styled.div`
-  display: flex;
-  align-items: center;
-  height: 100px;
-  border-bottom: solid 1px;
-`;
+import FlexContainer from "src/component/Common/FlexContainer.jsx";
 
 export const Header = () => {
   const navList = ["채팅", "대시보드"];
@@ -50,3 +43,10 @@ export const VerticalHeader = () => {
     </header>
   );
 }
+
+const StyledHeader = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100px;
+  border-bottom: solid 1px;
+`;

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { FlexContainer } from "src/component/Common/FlexContainer";
-import { StyledButton } from "src/styled/StyledButton";
+import FlexContainer from "src/component/Common/FlexContainer";
+import Button from "src/component/Common/Button.jsx";
 
 export const SideBar = () => {
   const navigate = useNavigate();
@@ -30,13 +30,15 @@ export const SideBar = () => {
     <StyledItem isVisible={isVisible}>
       <FlexContainer direction="column" between="20px">
         <img src="./chat.png" width="100px" height="100px" />
-        <StyledButton onClick={() => navigate("/thread")}>스레드</StyledButton>
-        <StyledButton onClick={() => navigate("/profile")}>프로필</StyledButton>
-        <StyledButton onClick={() => navigate("/empty")}>빈페이지</StyledButton>
-        <StyledButton onClick={() => navigate("/post")}>포스트</StyledButton>
-        <StyledButton onClick={() => navigate("/test")}>테스트</StyledButton>
-        <StyledButton onClick={() => navigate("/write")}>쓰기</StyledButton>
-        <StyledButton onClick={() => navigate("/date")}>날짜 축약</StyledButton>
+        <Button onClick={() => navigate("/thread")}>스레드</Button>
+        <Button onClick={() => navigate("/profile")}>프로필</Button>
+        <Button onClick={() => navigate("/empty")}>빈페이지</Button>
+        <Button onClick={() => navigate("/post")}>포스트</Button>
+        <Button onClick={() => navigate("/write")}>쓰기</Button>
+        <Button onClick={() => navigate("/date")}>날짜 축약</Button>
+        <Button onClick={() => navigate("/createUser")}>유저 생성 테스트</Button>
+        <Button onClick={() => navigate("/loginTest")}>로그인 테스트</Button>
+        <Button onClick={() => navigate("/createThread")}>글 생성 테스트</Button>
       </FlexContainer>
     </StyledItem>
   </StyledSidebar>;

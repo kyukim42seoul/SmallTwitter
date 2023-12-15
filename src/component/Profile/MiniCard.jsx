@@ -39,8 +39,8 @@
 */
 
 import styled from "styled-components";
-import { FlexContainer } from "src/component/Common/FlexContainer.jsx";
-import { StyledTextButton } from "src/styled/StyledTextButton.js";
+import FlexContainer from "src/component/Common/FlexContainer.jsx";
+import TextButton from "src/component/Common/TextButton.jsx";
 
 const StyledMiniCard = styled.div`
   display: flex;
@@ -118,13 +118,13 @@ export const MiniCard = ({ self, readOnly, isComment, ...props }) => {
         <FlexContainer direction="row" justify="space-between">
           <FlexContainer>
             <img src="comment.png" width="16px" height="16px" />
-            <StyledTextButton fontSize="16px">
+            <TextButton fontSize="16px">
               {String(commentCount)}
-            </StyledTextButton>
+            </TextButton>
           </FlexContainer>
           <FlexContainer>
             {tagList.map((tag, index) => {
-              return <StyledTextButton key={index}>{tag}</StyledTextButton>;
+              return <TextButton key={index}>{tag}</TextButton>;
             })}
           </FlexContainer>
         </FlexContainer>
@@ -146,8 +146,8 @@ export const MiniCard = ({ self, readOnly, isComment, ...props }) => {
             {" "}
             {/* profile, userID, userEmail */}
             <img src="./chat.png" width="36px" height="36px" />
-            <StyledTextButton>kyukim</StyledTextButton>
-            <StyledTextButton>kyukim@student.42seoul.kr</StyledTextButton>
+            <TextButton>kyukim</TextButton>
+            <TextButton>kyukim@student.42seoul.kr</TextButton>
             <p style={{ fontSize: "12px" }}>yyyy-mm-dd</p>
           </FlexContainer>
           <FlexContainer className="rightHead" direction="row" between="20px">
@@ -181,11 +181,11 @@ export const MiniCard = ({ self, readOnly, isComment, ...props }) => {
         <FlexContainer direction="row" justify="space-between">
           <FlexContainer>
             <img src="comment.png" width="36px" height="36px" />
-            <StyledTextButton>{String(commentCount)}</StyledTextButton>
+            <TextButton>{String(commentCount)}</TextButton>
           </FlexContainer>
           <FlexContainer>
             {tagList.map((tag, index) => {
-              return <StyledTextButton key={index}>{tag}</StyledTextButton>;
+              return <TextButton key={index}>{tag}</TextButton>;
             })}
           </FlexContainer>
         </FlexContainer>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { FlexContainer } from "src/component/Common/FlexContainer.jsx";
-import { StyledButton } from "src/styled/StyledButton.js";
+import FlexContainer from "src/component/Common/FlexContainer.jsx";
+import Button from "src/component/Common/Button.jsx";
 import { LoginForm } from "src/component/Login/LoginForm.jsx";
 import { SignUpForm } from "src/component/Login/SignUpForm.jsx";
 import { SideBar } from "src/component/Test/SideBar";
@@ -24,7 +24,7 @@ export const Login = () => {
       >
         <img src="./chat.png" width="100px" height="100px" />
         <LoginForm />
-        <StyledButton onClick={() => setIsOpen(true)}>회원가입</StyledButton>
+        <Button onClick={() => setIsOpen(true)}>회원가입</Button>
         {isOpen && <SignUpForm setIsOpen={setIsOpen} />}
       </FlexContainer>
     </StyledWrapper>

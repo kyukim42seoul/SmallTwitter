@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ButtonList } from "src/component/Common/ButtonList.jsx";
+import FlexContainer from "src/component/Common/FlexContainer.jsx";
+import ButtonList from "src/component/Common/ButtonList.jsx";
+import Button from "src/component/Common/Button.jsx";
 
-import "./Write.css";
+//import "./Write.css";
 
 import { FiArrowLeft } from "react-icons/fi";
 import { AiOutlineEye, AiOutlineArrowUp } from "react-icons/ai";
@@ -33,13 +35,15 @@ export const Write = () => {
           <textarea className="new-post-text" placeholder="What is happening?" onChange={(e)=>setText(e.target.value)} ></textarea>
         </div>
       </main>
-      <div className="write-button-wrapper" style={{display:"flex", justifyContent:"flex-end", gap:"1.2em", padding:"1.2em 0"}}>
-        <button onClick={()=>setIsOpenSeeRight(true)} ><AiOutlineEye size={"2em"} color="#FFF" /></button>
+      <FlexContainer direction="row" justify="flex-end" between="0.5rem" height="3rem">
+        <Button className="point" onClick={()=>setIsOpenSeeRight(true)} width="3rem"><AiOutlineEye size={"2em"} color="#FFF" /></Button>
             {isOpenSeeRight ? <ButtonList itemList={["everyone", "friends", "private"]} isClosable={true} setIsOpen={setIsOpenSeeRight} setValue={setSeeRight} /> : null }
-        <button onClick={()=>setIsOpenCommentRight(true)}><FaRegComments size={"2em"} color="#FFF" /></button>
+        <Button onClick={()=>setIsOpenCommentRight(true)}><FaRegComments size={"2em"} color="#FFF" /></Button>
           {isOpenCommentRight ? <ButtonList itemList={["everyone", "friends", "private"]} isClosable={true} setIsOpen={setIsOpenCommentRight} setValue={setCommentRight} /> : null }
-        <button className="upload-button" onClick={()=>{console.log(`text: ${text} seeRight: ${seeRight} commentRight: ${commentRight}`)}}><AiOutlineArrowUp size={"2em"} color="#FFF" /></button>
-      </div>
+        <Button className="upload-button" onClick={()=>{console.log(`text: ${text} seeRight: ${seeRight} commentRight: ${commentRight}`)}}>
+            <AiOutlineArrowUp size={"2em"} color="#FFF" />
+          </Button>
+      </FlexContainer>
       <footer style={{justifySelf:"flex-end", height:"54px", padding:"0", backgroundColor:"#D9D9D9"}}></footer>
     </div>
   );

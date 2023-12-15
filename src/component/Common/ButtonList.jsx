@@ -1,5 +1,6 @@
+import styled from "styled-components";
+
 /**
- * 
  * @Array itemList
  * @Boolean isClosable
  * @Function setIsOpen
@@ -8,10 +9,19 @@
 
 export const ButtonList = ({itemList, isClosable=false, setIsOpen=()=>{}, setValue=()=>{}}) => {
   const listHeight = (20 * itemList.length).toString() + "px";
+
   return (
-    <ul style={{display:"flex", flexDirection:"column", height:{listHeight}}}>
+    <StyledList height={listHeight}>
       {itemList.map((item, index) => <button key={index} onClick={(e)=>{setIsOpen(false); setValue(item);}}>{item}</button>)}
       {isClosable ? <button onClick={(e) => {e.stopPropagation(); setIsOpen(false)}}>Close</button> : null}
-    </ul>
+    </StyledList>
   );
 }
+
+const StyledList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  height: ${({ height }) => height || "1.5rem"};
+`;
+
+export default ButtonList;
