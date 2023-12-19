@@ -22,8 +22,8 @@ const FlexContainer = ({direction, justify, padding, between, width, height, ...
     <StyledFlexContainer
       direction={direction}
       justify={justify}
-      padding={padding}
-      between={gap}
+      $padding={padding}
+      $between={gap}
       width={width}
       height={height}
     >
@@ -34,16 +34,16 @@ const FlexContainer = ({direction, justify, padding, between, width, height, ...
 
 const StyledFlexContainer = styled.div`
   display: flex;
-  flex-direction: ${(props) => props.direction || "row"};
-  justify-content: ${(props) => props.justify || "center"};
+  flex-direction: ${({direction}) => direction || "row"};
+  justify-content: ${({justify}) => justify || "center"};
   align-items: center;
-  padding: ${(props) => props.padding || "0px"};
-  width: ${(props) => props.width || "auto"};
-  height: ${(props) => props.height || "auto"};
+  padding: ${({padding}) => padding || "0px"};
+  width: ${({width}) => width || "auto"};
+  height: ${({height}) => height || "auto"};
   overflow: auto;
 
   > :nth-child(n + 2) {
-    margin: ${(props) => props.between || "0px"};
+    margin: ${({$between}) => $between || "0px"};
   }
 `;
 

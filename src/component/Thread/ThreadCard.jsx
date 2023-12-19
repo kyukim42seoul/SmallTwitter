@@ -10,15 +10,6 @@ import styled from "styled-components";
 import FlexContainer from "src/component/Common/FlexContainer.jsx";
 import TextButton from "src/component/Common/TextButton.jsx";
 
-const StyledThreadCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 900px;
-  height: 200px;
-  padding: 20px;
-  border-bottom: solid 1px;
-`;
-
 export const ThreadCard = (props) => {
   const prefix = "#";
   const commentCount = props.commentCount || 12;
@@ -71,3 +62,12 @@ export const ThreadCard = (props) => {
     </StyledThreadCard>
   );
 };
+
+const StyledThreadCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+  height: 200px;
+  padding: 20px;
+  border-bottom: solid 1px;
+`;

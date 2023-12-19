@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import FlexContainer from "src/component/Common/FlexContainer";
 import Button from "src/component/Common/Button.jsx";
+import { bool } from "prop-types";
 
 export const SideBar = () => {
   const navigate = useNavigate();
@@ -26,8 +27,9 @@ export const SideBar = () => {
     };
 }, []);
 
-  return <StyledSidebar isVisible={isVisible}>
-    <StyledItem isVisible={isVisible}>
+  return (
+  <StyledSidebar $isVisible={isVisible}>
+    <StyledItem $isVisible={isVisible}>
       <FlexContainer direction="column" between="20px">
         <img src="./chat.png" width="100px" height="100px" />
         <Button onClick={() => navigate("/thread")}>스레드</Button>
@@ -41,13 +43,14 @@ export const SideBar = () => {
         <Button onClick={() => navigate("/createThread")}>글 생성 테스트</Button>
       </FlexContainer>
     </StyledItem>
-  </StyledSidebar>;
+  </StyledSidebar>
+  );
 };
 
 const StyledSidebar = styled.div`
   height: 100%; /* 전체 높이 */
-  width: ${({isVisible}) => isVisible ? "250px" : "0"}; /* 사이드바의 너비 */
-  overflow: ${({isVisible}) => isVisible ? "visible" : "hidden"};
+  width: ${({$isVisible}) => $isVisible ? "250px" : "0"};
+  overflow: ${({$isVisible}) => $isVisible ? "visible" : "hidden"};
   transition: 0.2s;
   position: fixed; /* 고정된 위치 */
   top: 0; /* 상단에서부터 시작 */
@@ -59,6 +62,6 @@ const StyledSidebar = styled.div`
 `;
 
 const StyledItem = styled.div`
-  transform: ${props => props.isVisible ? 'translateX(0)' : 'translateX(-250px)'};
+  transform: ${({$isVisible}) => $isVisible ? 'translateX(0)' : 'translateX(-250px)'};
   transition: transform 0.2s;
 `;
