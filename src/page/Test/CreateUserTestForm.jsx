@@ -16,7 +16,7 @@ export const CreateUserTestForm = () => {
     if (allFieldsFilled) {
       // 여기에 제출 로직을 작성합니다.
       console.log('Form Submitted', { input1, input2, input3 });
-      axios.post("http://localhost:3232/users", {
+      axios.post("http://localhost:3232/users/signup", {
         userEmail: input1,
         userPassword: input2,
         userName: input3

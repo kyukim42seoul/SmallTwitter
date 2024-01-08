@@ -1,6 +1,8 @@
 /**
  * Todos
  *  아이디 검사 통과 후 새로 생길 패스워드 칸으로 마우스 커서 이동
+ * 
+ * 제출 버튼이 조건부 렌더링으로 갔을 땐 네트워크 요청이 큐에 들어가고(pending), 일반적으로 렌더링 됐을 땐 바로 요청을 수행하는 이유가 뭘까?
  */
 
 import { useState, useEffect } from "react";
@@ -10,66 +12,72 @@ import Button from "src/component/Common/Button.jsx";
 import { keyDownHandler, isValidForm } from "src/common/Utils.js";
 import { emailRegExp, passwordRegExp } from "src/data/regex.js";
 import axios from "axios";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 export const LoginForm = () => {
+  const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [userPassword, setUserPassword] = useState("");
   const [isValidId, setIsValidId] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [idPlaceholder, setIdPlaceholer] = useState("아이디를 입력해 주십시오.");
   const [passwordPlaceholder, setPasswordPlaceholer] = useState("비밀번호를 입력해 주십시오.");
 
-
   const inValidFormInputText = "잘못된 형식입니다.";
   const existedIdText = "이미 사용 중인 아이디입니다."; 
 
-  useEffect(()=>{
-    if (isValidPassword) {
-      axios.post("http://127.0.0.1:3232/api/validation", {userEmail: userEmail, userPw: password})
-      .then((res) => console.log(`Response from server validation: ${res.data}`))
-      .catch((error)=> console.error(`Error validation: ${error}`))
-    } else {
-      console.log("Is not valid from password");
-    }
-  }, [isValidPassword]);
+  const allFieldsFilled = userEmail && userPassword;
 
-  useEffect(()=>{
-    axios.post("http://127.0.0.1:3232/api/validation/email", {userEmail: userEmail})
-    .then((res) => {})
-    .catch((error) => console.error("Error email validation: ", error));
-  }, [isValidId]);
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    if (allFieldsFilled) {
+      axios.post("http://localhost:3232/users/login", {
+        userEmail,
+        userPassword
+      },
+      {
+        headers: { "Content-Type": `application/json` },
+      })
+      .then(res => {
+        if (res.status === 200) {
+          console.log(`Login Data : `, res.data);
+          window.localStorage.setItem("userId", res.data);
+          navigate("/thread");
+          return ;
+        }
+        console.log(`res received : `, res.data);
+      })
+      .catch(err => console.error(err.message));
+    } else {
+      console.log('Please fill all the fields');
+    }
+  };
 
   return (
     <FlexContainer direction="column" padding="15px" between="15px">
-      <Input
-        placeholder={idPlaceholder}
-        value={userEmail}
-        onChange={(event)=>{setUserEmail(event.target.value)}}
-        onKeyDown={(event) => {
-          if (event.key === "Enter") {
-            setIsValidId(isValidForm(userEmail, emailRegExp));
-          };
-        }}
-        />
-      {isValidId && (
-        <>
-          <Input
-            type="password"
-            placeholder="비밀번호를 입력해주세요"
-            autoFocus={true}
-            onChange={(event)=>{setPassword(event.target.value)}}
-            onKeyDown={(event)=>{
+      <StyledForm onSubmit={onSubmitHandler}>
+        <Input
+          placeholder={idPlaceholder}
+          value={userEmail}
+          onChange={(event)=>{setUserEmail(event.target.value)}}
+          onKeyDown={(event) => {
             if (event.key === "Enter") {
-              setIsValidPassword(isValidForm(password, passwordRegExp));
-              }
-            }}
+              setIsValidId(isValidForm(userEmail, emailRegExp));
+            };
+          }}
           />
-          <span>영문 대문자/소문자/특수문자(!#@)를 포함하여 8 ~ 12자리</span>
-        </>
-      )}
-      {isValidPassword && (
-        <Input placeholder="어떤 닉네임을 사용하시겠습니까?" onKeyDown={(event)=> keyDownHandler(event, setNickname)} />
-      )}
+        <Input
+          type="password"
+          placeholder="비밀번호를 입력해주세요"
+          value={userPassword}
+          autoFocus={true}
+          onChange={(event)=>{setUserPassword(event.target.value)}}
+        />
+        {allFieldsFilled && (
+          <Button>로그인</Button>
+        )}
+      </StyledForm>
       <Button onClick={() => console.log(`google login clicked!`)}>
         Google 계정으로 로그인
       </Button>
@@ -79,3 +87,11 @@ export const LoginForm = () => {
     </FlexContainer>
   );
 };
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  > input, button {
+    margin-top: 1rem;
+  }
+`;

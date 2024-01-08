@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import FlexContainer from "src/component/Common/FlexContainer";
 import Button from "src/component/Common/Button.jsx";
-import { bool } from "prop-types";
 
 export const SideBar = () => {
   const navigate = useNavigate();

@@ -4,17 +4,14 @@ import FlexContainer from "src/component/Common/FlexContainer.jsx";
 import Button from "src/component/Common/Button.jsx";
 import { LoginForm } from "src/component/Login/LoginForm.jsx";
 import { SignUpForm } from "src/component/Login/SignUpForm.jsx";
-import { SideBar } from "src/component/Test/SideBar";
 
 const StyledWrapper = styled.div``;
 
 export const Login = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  
   return (
     <StyledWrapper>
-      <SideBar/>
       <FlexContainer
         direction="column"
         padding="0px"

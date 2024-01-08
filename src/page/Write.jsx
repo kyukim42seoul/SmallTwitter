@@ -24,7 +24,7 @@ export const Write = () => {
     <div style={{display:"flex", flexDirection:"column", height:"inherit", padding:"0 1.6em"}}>
       <header>
         <div style={{display:"flex", flexDirection:"row", alignItems:"center", gap:"1em", height:"54px"}}>
-          <button onClick={()=>navigate("/home")} style={{width:"54px"}}>
+          <button onClick={()=>navigate("/")} style={{width:"54px"}}>
             <FiArrowLeft size={"2em"}/>
           </button>
           <span style={{fontSize:"20px", fontWeight:"bold"}}>Write</span>

@@ -5,8 +5,10 @@
  */
 export const isValidForm = (input, regexp) => {
   const validRegex = new RegExp(regexp);
-
-  return validRegex.exec(input);
+  const result = validRegex.exec(input);
+  console.log(`isValidForm result : ${result}`)
+  
+  return result;
 };
 
 /**
