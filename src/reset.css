@@ -2,8 +2,9 @@ body {
   margin: 0;
 }
 
-div, button, input, form, ul {
+div, button, input, form, ul, pre {
   box-sizing: border-box;
+  font-family: inherit;
   margin: 0;
   padding: 0;
 }
@@ -13,5 +14,11 @@ button {
   font-weight: inherit;
 }
 
+input {
+  border: unset;
+}
 
+textarea {
+  border: unset;
+}
 

@@ -114,7 +114,7 @@ const router = createBrowserRouter([
 //const router = createBrowserRouter(
 //  createRoutesFromElements(
 //    <>
-//      <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
+//      <Route path="/" element={<Layout />} errorElement={<ErrorPage />}>  
 //        <Route path="/login" element={<Login />} />
 //        <Route path="/thread" element={<Thread />} />
 //        <Route path="/profile" element={<Profile />} />

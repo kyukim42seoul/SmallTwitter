@@ -10,8 +10,8 @@ const TextButton = (props) => {
 
 const StyledTextButton = styled.button`
   width: auto;
-  height: ${({ fontSize }) => fontSize * 1.2 || "1.2em"};
-  font-size: ${({ fontSize }) => fontSize || "1em"};
+  height: ${({ fontSize }) => fontSize * 1.2 || "1.5rem"};
+  font-size: ${({ fontSize }) => fontSize || "1rem"};
   border: 0;
   background: transparent;
 

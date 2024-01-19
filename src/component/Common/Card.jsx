@@ -15,8 +15,8 @@ const StyledCard = styled.div`
   padding: 10px;
   border-radius: 15px;
   color: ${({ color }) => color || var(--black)};
-  background-color: ${({ backgroundColor }) =>
-    backgroundColor || "transparent"};
+  background-color: ${({ $backgroundColor }) =>
+    $backgroundColor || "transparent"};
 `;
 
 export default Card;

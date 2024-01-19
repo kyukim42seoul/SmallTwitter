@@ -11,8 +11,9 @@ const StyledButton = styled.button`
   width: ${({width}) => width || "250px"};
   height: 40px;
   border-radius: 30px;
-  border: 1px solid var(--grey3);
-  background-color: ${({backgroundColor}) => backgroundColor || "var(--white)"};
+  border: ${($border) => $border || "1px solid var(--grey3)"};
+  background-color: ${({$backgroundColor}) => $backgroundColor || "var(--white)"};
+  color: ${(color) => color || "var(--black)"};
   margin: ${({ margin }) => margin || "0"};
 
   &.point {

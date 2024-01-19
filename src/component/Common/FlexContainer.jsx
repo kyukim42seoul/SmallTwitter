@@ -11,7 +11,7 @@ import styled from "styled-components";
  * @returns {JSX}
  */
 
-const FlexContainer = ({direction, justify, padding, between, width, height, ...props}) => {
+const FlexContainer = ({direction, justify, align, padding, between, width, height, ...props}) => {
   let gap = `0`;
   if (between && direction === "column") {
     gap = `${between} 0 0 0`;
@@ -21,11 +21,13 @@ const FlexContainer = ({direction, justify, padding, between, width, height, ...
   return (
     <StyledFlexContainer
       direction={direction}
-      justify={justify}
-      $padding={padding}
+      $justify={justify}
+      $align={align}
+      padding={padding}
       $between={gap}
       width={width}
       height={height}
+      {...props}
     >
       {props.children}
     </StyledFlexContainer>
@@ -35,8 +37,8 @@ const FlexContainer = ({direction, justify, padding, between, width, height, ...
 const StyledFlexContainer = styled.div`
   display: flex;
   flex-direction: ${({direction}) => direction || "row"};
-  justify-content: ${({justify}) => justify || "center"};
-  align-items: center;
+  justify-content: ${({$justify}) => $justify || "center"};
+  align-items: ${({$align}) => $align || "center"};
   padding: ${({padding}) => padding || "0px"};
   width: ${({width}) => width || "auto"};
   height: ${({height}) => height || "auto"};
