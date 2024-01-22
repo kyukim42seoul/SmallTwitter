@@ -2,6 +2,27 @@ import { useRef, useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import Button from "src/component/Common/Button.jsx";
 import styled from "styled-components";
+import axios from "axios";
+
+const createPost = (threadContent) => {
+  const currentTime = new Date().toISOString();
+  const userId = window.localStorage.getItem("userId");
+
+  try {
+    axios.post("http://localhost:3232/threads", {
+      uploadTime: currentTime,
+      threadContent,
+      userId
+    }, {
+      headers: { "Content-Type": `application/json` }
+    })
+    .then(res => console.log(res.status, res.data))
+    .catch(error => console.error("ERR_createPost : ", error));
+  } catch(error) {
+    console.error("ERR_createThread : ", error);
+    return ;
+  }
+};
 
 const DraftInput = () => {
   const focusRefs = useRef([]);
@@ -87,7 +108,7 @@ const DraftInput = () => {
     event.preventDefault();
     const fullText = concatenateLines();
 
-    console.log(`fullText : ${fullText}`);
+    createPost(fullText);
     clearText();
     initLines();
   }
