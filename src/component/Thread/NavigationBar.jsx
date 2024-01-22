@@ -5,31 +5,35 @@ import { GoHome, GoHomeFill, GoBookmark, GoBookmarkFill } from "react-icons/go";
 import { FaRegUser, FaUser } from "react-icons/fa6";
 import { LuLeaf } from "react-icons/lu";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 
 const NavigationBar = (props) => {
-  //Tab.home -> setTab(Tab.profile) 형태로 바꾸는것 고려
   const [isHome, setIsHome] = useState(true);
   const [isBookmarks, setIsBookmarks] = useState(false);
   const [isProfile, setIsProfile] = useState(false);
   const [isShorten, setIsShorten] = useState(false);
+  const navigate = useNavigate();
 
   const handleHome = () => {
     setIsHome(true);
     setIsBookmarks(false);
     setIsProfile(false);
+    navigate("/thread");
   }
 
   const handleBookmarks = () => {
     setIsHome(false);
     setIsBookmarks(true);
     setIsProfile(false);
+    navigate("/bookmarks");
   }
 
   const handleProfile = () => {
     setIsHome(false);
     setIsBookmarks(false);
     setIsProfile(true);
+    navigate("/profile");
   }
 
   useEffect(() => {
@@ -77,18 +81,24 @@ const NavigationBar = (props) => {
 export default NavigationBar;
 
 const StyledNavigationBar = styled.nav`
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  gap: 1rem;
-  padding-right: 1rem;
-  border-right: 1px solid var(--grey3);
+  display: none;
 
-  .iconText {
-    display: none;
+  @media screen and (min-width: 700px) {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+    padding-right: 1rem;
+    border-right: 1px solid var(--grey3);
+
+    .iconText {
+      display: none;
+    }
   }
 
   @media screen and (min-width: 1225px) {
+    width: 275px;
+
     .iconText {
       display: unset;
     }

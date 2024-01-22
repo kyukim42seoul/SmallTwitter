@@ -17,12 +17,16 @@ const TrendingSideBar = (props) => {
 export default TrendingSideBar;
 
 const StyledTrendingSideBar = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-  padding: 0.75rem 1rem 0 1rem;
-  border-left: 1px solid var(--grey3);
+  display: none;
+
+  @media screen and (min-width: 1000px) {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 350px;
+    padding: 0.75rem 1rem 0 1rem;
+    border-left: 1px solid var(--grey3);
+  }
 `
 
 const StyledSearch = styled.input`

@@ -42,22 +42,6 @@ import styled from "styled-components";
 import FlexContainer from "src/component/Common/FlexContainer.jsx";
 import TextButton from "src/component/Common/TextButton.jsx";
 
-const StyledMiniCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 860px;
-  height: 100px;
-  padding: 20px;
-  border-bottom: solid 1px;
-
-  .leftHead {
-    justify-content: left;
-  }
-  .rightHead {
-    justify-content: right;
-  }
-`;
-
 /**
  * return customed ThreadCard by self, readOnly, isComment
  * @param {boolean} self
@@ -68,7 +52,7 @@ const StyledMiniCard = styled.div`
  * @returns {JSX}
  */
 
-export const MiniCard = ({ self, readOnly, isComment, ...props }) => {
+const MiniCard = ({ self, readOnly, isComment, ...props }) => {
   const prefix = "#";
   const commentCount = props.commentCount || 12;
   const tagList =
@@ -101,7 +85,6 @@ export const MiniCard = ({ self, readOnly, isComment, ...props }) => {
             direction="row"
             justify="right"
             between="10px"
-            width="82px"
           >
             {" "}
             {/* 별, 더보기 */}
@@ -170,7 +153,6 @@ export const MiniCard = ({ self, readOnly, isComment, ...props }) => {
             margin: "0",
             padding: "0 36px",
             height: "120px",
-            width: "auto",
             whiteSpace: "pre-wrap",
           }}
         >
@@ -193,3 +175,20 @@ export const MiniCard = ({ self, readOnly, isComment, ...props }) => {
     );
   }
 };
+
+export default MiniCard;
+
+const StyledMiniCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  padding: 20px;
+  border-bottom: solid 1px;
+
+  .leftHead {
+    justify-content: left;
+  }
+  .rightHead {
+    justify-content: right;
+  }
+`;

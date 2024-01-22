@@ -9,8 +9,9 @@ import {
 } from "react-router-dom";
 import { Login } from "src/page/Login.jsx";
 import { ErrorPage } from "src/page/ErrorPage.jsx";
-import { Thread } from "src/page/Thread.jsx";
-import { Profile } from "src/page/Profile.jsx";
+import Thread from "src/page/Thread.jsx";
+import Bookmarks from "./page/Bookmarks.jsx";
+import Profile from "src/page/Profile.jsx";
 import { Empty } from "src/page/Empty.jsx";
 import { Post } from "src/page/Post.jsx";
 import { Write } from "src/page/Write.jsx";
@@ -105,6 +106,14 @@ const router = createBrowserRouter([
         path: "createThread",
         element: (
           <CreateThreadTestForm />
+        )
+      },
+      {
+        path: "bookmarks",
+        element: (
+          <ProtectedRoute>
+            <Bookmarks />
+          </ProtectedRoute>
         )
       },
     ]

@@ -1,73 +1,124 @@
-import styled from "styled-components";
-import NavigationBar from "../component/Thread/NavigationBar.jsx";
-import FlexContainer from "src/component/Common/FlexContainer.jsx";
+import React, { useState, useEffect, useRef, cloneElement } from "react";
+import Button from "src/component/Common/Button.jsx";
 import { ThreadCard } from "src/component/Thread/ThreadCard.jsx";
-import TrendingSideBar from "../component/Thread/TrendingSideBar.jsx";
-import MainContent from "../component/Thread/MainContent.jsx";
+import DraftInput from "src/component/Thread/DraftInput.jsx";
+import styled from "styled-components";
+import * as _ from "lodash";
 
-export const Thread = () => {
-  const threadInfo = {
-    threadID: 0,
-    userNickname: "",
-    userEmail: "",
-    uploadDate: 0,
-    post: "",
-    tag: [""],
+const Thread = (props) => {
+  const Tab = {
+    me: "me",
+    follow: "follow"
   };
 
+  const [currentTab, setCurrentTab] = useState(Tab.me);
+  const componentRef = useRef();
+  const [currentWidth, setCurrentWidth] = useState(0);
+
+  const handleResize = () => {
+    if (componentRef) {
+      setCurrentWidth(componentRef.current.offsetWidth);
+    };
+  };
+
+  const throttledHandleResize = _.throttle(handleResize, 200);
+
+  const isCurrentTab = (tabName) => {
+    return tabName === currentTab;
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", throttledHandleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", throttledHandleResize);
+    }
+  }, []);
+
   return (
-    <StyledWrapper>
-      <NavigationBar className="navigationBar" />
-      <MainContent className="mainSection" />
-      <TrendingSideBar className="sideBar" />
-    </StyledWrapper>
+    <StyledThread ref={componentRef} {...props}>
+      <StyledMainNavigation>
+        <StyledLink onClick={() => {setCurrentTab(Tab.me)}} className={isCurrentTab(Tab.me) ? "active" : ""}>For you</StyledLink>
+        <StyledLink onClick={() => {setCurrentTab(Tab.follow)}} className={isCurrentTab(Tab.follow) ? "active" : ""}>Following</StyledLink>
+      </StyledMainNavigation>
+      <StyledInputContainer>
+        <StyledImage src="./user.png" $size="2.5rem" />
+        <StyledInputWrapper>
+          <DraftInput />
+          <Button className="postButton" $border="0" $backgroundColor="var(--main)" color="var(--white)">Post</Button>
+        </StyledInputWrapper>
+      </StyledInputContainer>
+      <ThreadCard />
+      <ThreadCard />
+      <ThreadCard />
+      <ThreadCard />
+      <ThreadCard />
+      <ThreadCard />
+    </StyledThread>
   );
-};
+}
 
-  const StyledWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    & > .navigationBar {
-      display: none;
-    }
-    & > .mainSection {
-      max-width: 37.5rem;
-      border-right: 1px solid var(--grey3);
-      overflow-y: auto;
-      scrollbar-width: none;
-      &::-webkit-scrollbar { display: none; };
-    }
-    & > .sideBar {
-      display: none;
-    }
+export default Thread;
 
-    @media screen and (min-width: 700px) {
-      & > .navigationBar {
-        display: flex;
-        max-width: 15rem;
-      }
-    }
-    
-    @media screen and (min-width: 1000px) {
-      & > .mainSection {
-        max-width: 37.5rem;
-      }
-      & > .sideBar {
-        display: flex;
-        width: 350px;
-      }
-    }
+const StyledThread = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  border-right: 1px solid var(--grey3);
+  overflow-y: auto;
+  scrollbar-width: none;
 
-    @media screen and (min-width: 1225px) {
-      & > .navigationBar {
-        width: 275px;
-      }
-      & > .mainSection {
-      }
-      & > .sideBar {
-        display: flex;
-        max-width: 350px;
-      }
-    }
-  `;
+  ::-webkit-scrollbar { display: none; };
+`
+
+const StyledMainNavigation = styled.nav`
+  display: flex;
+  border-bottom: 1px solid var(--grey3);
+  .active {
+    color: var(--black);
+  }
+  `
+
+const StyledLink = styled.a`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  height: 3.5rem;
+  color: var(--grey4);
+  font-weight: bold;
+  &:hover {
+    background-color: var(--grey2);
+  }
+`
+
+const StyledInputContainer = styled.div`
+  display: flex;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--grey3);
+`
+
+const StyledImage = styled.img`
+  width: ${({$size}) => $size || "1.5rem"};
+  height: ${({$size}) => $size ||  "1.5rem"};
+  margin-right: 0.75rem;
+`
+
+const StyledInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.5rem;
+  & > .postButton {
+    align-self: flex-end;
+  }
+`
+
+const StyledPostInput = styled.span`
+  display: inline-block;
+  padding: 0.75rem 0;
+  font-size: 1.25rem;
+`
