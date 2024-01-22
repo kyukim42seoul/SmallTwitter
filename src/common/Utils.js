@@ -20,3 +20,9 @@ export const keyDownHandler = (e, setter) => {
     setter(e.target.value);
   }
 };
+
+export const converseEmail = (email) => {
+  const userName = email.split('@')[0];
+
+  return `@${userName}`;
+}

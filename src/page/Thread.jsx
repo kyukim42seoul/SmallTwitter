@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, cloneElement } from "react";
-import Button from "src/component/Common/Button.jsx";
 import { ThreadCard } from "src/component/Thread/ThreadCard.jsx";
 import DraftInput from "src/component/Thread/DraftInput.jsx";
 import styled from "styled-components";
@@ -47,7 +46,6 @@ const Thread = (props) => {
         <StyledImage src="./user.png" $size="2.5rem" />
         <StyledInputWrapper>
           <DraftInput />
-          <Button className="postButton" $border="0" $backgroundColor="var(--main)" color="var(--white)">Post</Button>
         </StyledInputWrapper>
       </StyledInputContainer>
       <ThreadCard />
@@ -75,6 +73,9 @@ const StyledThread = styled.div`
 
 const StyledMainNavigation = styled.nav`
   display: flex;
+  position: sticky;
+  top: 0;
+  background-color: var(--white);
   border-bottom: 1px solid var(--grey3);
   .active {
     color: var(--black);
@@ -111,10 +112,6 @@ const StyledInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 0.5rem;
-  & > .postButton {
-    align-self: flex-end;
-  }
 `
 
 const StyledPostInput = styled.span`

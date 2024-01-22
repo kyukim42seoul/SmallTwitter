@@ -12,7 +12,7 @@ const NavigationBar = (props) => {
   const [isHome, setIsHome] = useState(true);
   const [isBookmarks, setIsBookmarks] = useState(false);
   const [isProfile, setIsProfile] = useState(false);
-  const [isShorten, setIsShorten] = useState(false);
+  const [isShorten, setIsShorten] = useState(window.innerWidth < 1225);
   const navigate = useNavigate();
 
   const handleHome = () => {
