@@ -5,11 +5,9 @@ import Button from "src/component/Common/Button.jsx";
 import { LoginForm } from "src/component/Login/LoginForm.jsx";
 import { SignUpForm } from "src/component/Login/SignUpForm.jsx";
 
-const StyledWrapper = styled.div``;
-
-export const Login = () => {
+const Login = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  
   return (
     <StyledWrapper>
       <FlexContainer
@@ -18,7 +16,7 @@ export const Login = () => {
         between="50px"
         width="100%"
         height="100vh"
-      >
+        >
         <img src="./chat.png" width="100px" height="100px" />
         <LoginForm />
         <Button onClick={() => setIsOpen(true)}>회원가입</Button>
@@ -27,3 +25,7 @@ export const Login = () => {
     </StyledWrapper>
   );
 };
+
+export default Login;
+
+const StyledWrapper = styled.div``;

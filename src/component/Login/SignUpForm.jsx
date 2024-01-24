@@ -80,8 +80,8 @@ export const SignUpForm = ({ setIsOpen }) => {
             <p style={{ color: "red" }}>비밀번호를 다시 확인해주십시오</p>
           )}
           <Input placeholder="닉네임을 적어주세요" value={userName} onChange={(e) => {setUserName(e.target.value)}} />
-          <Button onClick={() => {}}>Submit</Button>
-          <Button onClick={() => setIsOpen(false)}>close</Button>
+          <Button type="submit" onClick={() => {setIsOpen(false)}}>Submit</Button>
+          <Button type="button" onClick={() => setIsOpen(false)}>close</Button>
         </FlexContainer>
       </StyledSignUpForm>
     </StyledWrapper>

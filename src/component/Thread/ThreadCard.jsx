@@ -6,19 +6,23 @@
   list up sorted cards by tag when click #tag
 */
 
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import FlexContainer from "src/component/Common/FlexContainer.jsx";
 import TextButton from "src/component/Common/TextButton.jsx";
 
-export const ThreadCard = (props) => {
+const ThreadCard = (props) => {
+  const threadContent = props.threadInfo ? props.threadInfo.thread_content : "빈 카드입니다.";
   const prefix = "#";
   const commentCount = props.commentCount || 12;
   const tagList =
     props.tagList || ["apple", "banana", "orange"].map((tag) => prefix + tag);
+
   return (
     <StyledThreadCard>
       <StyledProfile src="./user.png" $size="2.5rem" />
-      <FlexContainer direction="column" align="normal">
+      <FlexContainer className="contentWrapper" direction="column" align="normal">
         <FlexContainer
           className="cardHeader"
           direction="row"
@@ -35,9 +39,7 @@ export const ThreadCard = (props) => {
           </FlexContainer>
         </FlexContainer>
         <StyledContetnt>
-          여기는 글입니다. 여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
-          글입니다.여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
-          글입니다.여기는 글입니다.
+          {threadContent}
         </StyledContetnt>
         <FlexContainer className="cardFooter" direction="row" justify="space-between">
           <FlexContainer justify="flex-start" height="1.25rem">
@@ -55,14 +57,21 @@ export const ThreadCard = (props) => {
   );
 };
 
+export default ThreadCard;
+
 const StyledThreadCard = styled.div`
   display: flex;
   flex-direction: row;
+  flex: 1;
   padding: 1.25rem;
   border-bottom: solid 1px var(--grey2);
 
   &:hover {
     background-color: var(--grey2);
+  }
+
+  .contentWrapper {
+    flex: 1;
   }
 
   .cardFooter {

@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, cloneElement } from "react";
-import { ThreadCard } from "src/component/Thread/ThreadCard.jsx";
+import ThreadCard from "src/component/Thread/ThreadCard.jsx";
 import DraftInput from "src/component/Thread/DraftInput.jsx";
 import styled from "styled-components";
-import * as _ from "lodash";
+import axios from "axios";
+import { v4 as uuidv4 } from 'uuid';
 
 const Thread = (props) => {
   const Tab = {
@@ -12,29 +13,29 @@ const Thread = (props) => {
 
   const [currentTab, setCurrentTab] = useState(Tab.me);
   const componentRef = useRef();
-  const [currentWidth, setCurrentWidth] = useState(0);
-
-  const handleResize = () => {
-    if (componentRef) {
-      setCurrentWidth(componentRef.current.offsetWidth);
-    };
-  };
-
-  const throttledHandleResize = _.throttle(handleResize, 200);
+  const [threadInfos, setThreadInfos] = useState([]);
 
   const isCurrentTab = (tabName) => {
     return tabName === currentTab;
   }
 
-  useEffect(() => {
-    window.addEventListener("resize", throttledHandleResize);
+  // ThreadCard 에 보낼 컨텐츠 받아오는 부분
+  const getThreadInfos = () => {
+    const userId = window.localStorage.getItem("userId");
+    
+    axios.get("http://localhost:3232/threads", {
+    headers: { "Content-Type": "application/json" },
+    params: { userId },
+    })
+    .then((response) => {
+      const newThreadInfos = response.data;
 
-    handleResize();
+      setThreadInfos(newThreadInfos);
+    })
+    .catch(error => console.error("ERR_getThread : ", error));
+  }
 
-    return () => {
-      window.removeEventListener("resize", throttledHandleResize);
-    }
-  }, []);
+  useEffect(getThreadInfos, []);
 
   return (
     <StyledThread ref={componentRef} {...props}>
@@ -48,6 +49,7 @@ const Thread = (props) => {
           <DraftInput />
         </StyledInputWrapper>
       </StyledInputContainer>
+      {threadInfos.map(threadInfo => <ThreadCard key={uuidv4()} threadInfo={threadInfo} />)}
       <ThreadCard />
       <ThreadCard />
       <ThreadCard />
@@ -63,12 +65,17 @@ export default Thread;
 const StyledThread = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
   max-width: 600px;
   border-right: 1px solid var(--grey3);
   overflow-y: auto;
   scrollbar-width: none;
 
   ::-webkit-scrollbar { display: none; };
+
+  @media screen and (min-width: 700px) {
+     width: 600px;
+  }
 `
 
 const StyledMainNavigation = styled.nav`

@@ -39,7 +39,6 @@ export const SideBar = () => {
         <Button onClick={() => navigate("/date")}>날짜 축약</Button>
         <Button onClick={() => navigate("/createUser")}>유저 생성 테스트</Button>
         <Button onClick={() => navigate("/loginTest")}>로그인 테스트</Button>
-        <Button onClick={() => navigate("/createThread")}>글 생성 테스트</Button>
       </FlexContainer>
     </StyledItem>
   </StyledSidebar>

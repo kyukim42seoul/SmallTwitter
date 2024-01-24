@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ThreadCard } from "src/component/Thread/ThreadCard.jsx";
+import ThreadCard from "src/component/Thread/ThreadCard.jsx";
 import { useEffect, useState } from "react";
 
 const user = {
