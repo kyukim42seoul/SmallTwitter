@@ -39,12 +39,18 @@ export default Bookmarks;
 const StyledBookmarks = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
   max-width: 600px;
   border-right: 1px solid var(--grey3);
+  border-left: 1px solid var(--grey3);
   overflow-y: auto;
   scrollbar-width: none;
 
   ::-webkit-scrollbar { display: none; };
+
+  @media screen and (min-width: 700px) {
+    width: 600px;
+  }
 `
 
 const StyledHeader = styled.div`

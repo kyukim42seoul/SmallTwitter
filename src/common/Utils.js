@@ -26,3 +26,24 @@ export const converseEmail = (email) => {
 
   return `@${userName}`;
 }
+
+export const timeCalculator = (uploadTime) => {
+  const now = new Date();
+  const differenceInMilliseconds = now - uploadTime;
+  const differenceInHours = Math.floor(differenceInMilliseconds / (1000 * 60 * 60));
+  const differenceInMinutes = Math.floor(differenceInMilliseconds / (1000 * 60));
+  const differenceInSeconds = Math.floor(differenceInMilliseconds / (1000));
+  const monthName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const uploadMonth = monthName[uploadTime.getMonth()];
+  const uploadDate = uploadTime.getDate();
+
+  if (differenceInSeconds <= 60)
+    return `${differenceInMilliseconds}s`;
+  if (differenceInMinutes <= 60)
+    return `${differenceInMinutes}m`;
+  if (differenceInHours < 24) {
+    return `${differenceInHours}h`;
+  } else {
+    return `${uploadMonth} ${uploadDate}`;
+  }
+};

@@ -25,7 +25,7 @@ const StyledTrendingSideBar = styled.div`
     gap: 1rem;
     width: 350px;
     padding: 0.75rem 1rem 0 1rem;
-    border-left: 1px solid var(--grey3);
+    /*border-left: 1px solid var(--grey3);*/
   }
 `
 

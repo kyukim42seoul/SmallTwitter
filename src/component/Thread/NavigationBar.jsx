@@ -89,7 +89,7 @@ const StyledNavigationBar = styled.nav`
     flex-direction: column;
     gap: 1rem;
     padding-right: 1rem;
-    border-right: 1px solid var(--grey3);
+    /*border-right: 1px solid var(--grey3);*/
 
     .iconText {
       display: none;

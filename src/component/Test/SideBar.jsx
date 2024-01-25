@@ -36,7 +36,6 @@ export const SideBar = () => {
         <Button onClick={() => navigate("/empty")}>빈페이지</Button>
         <Button onClick={() => navigate("/post")}>포스트</Button>
         <Button onClick={() => navigate("/write")}>쓰기</Button>
-        <Button onClick={() => navigate("/date")}>날짜 축약</Button>
         <Button onClick={() => navigate("/createUser")}>유저 생성 테스트</Button>
         <Button onClick={() => navigate("/loginTest")}>로그인 테스트</Button>
       </FlexContainer>

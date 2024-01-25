@@ -9,11 +9,26 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { timeCalculator } from "src/common/Utils.js";
 import FlexContainer from "src/component/Common/FlexContainer.jsx";
 import TextButton from "src/component/Common/TextButton.jsx";
 
-const ThreadCard = (props) => {
-  const threadContent = props.threadInfo ? props.threadInfo.thread_content : "빈 카드입니다.";
+const ThreadCard = ({ threadInfo }, ...props) => {
+  console.log(`threadInfo: `, threadInfo);
+
+  // 시간 관련 처리
+  const uploadTime = threadInfo ? new Date(threadInfo.upload_time) : new Date();
+  const uploadTimeString = timeCalculator(uploadTime);
+
+  const userName = threadInfo ? threadInfo.user_name : "홍길동";
+
+  const makeShortEmail = (email) => {
+    const username = email.split('@')[0];
+    return '@' + username;
+  };
+  const shortenedEmail = threadInfo ? makeShortEmail(threadInfo.user_email) : "@test";
+
+  const threadContent = threadInfo ? threadInfo.thread_content : "빈 카드입니다.";
   const prefix = "#";
   const commentCount = props.commentCount || 12;
   const tagList =
@@ -29,9 +44,9 @@ const ThreadCard = (props) => {
           justify="space-between"
         >
           <FlexContainer className="meta" direction="row" between="2px">
-            <TextButton className="nickName">하늘바라기</TextButton>
-            <TextButton>@kyukim</TextButton>
-            <p className="uploadDate" style={{ fontSize: "12px" }}>yyyy-mm-dd</p>
+            <TextButton className="nickName">{userName}</TextButton>
+            <TextButton>{shortenedEmail}</TextButton>
+            <p className="uploadDate" style={{ fontSize: "12px" }}>{uploadTimeString}</p>
           </FlexContainer>
           <FlexContainer direction="row" between="1.25rem">
             <StyledIcon src="./off_star.png" $size="1.5rem" />

@@ -68,6 +68,7 @@ const StyledThread = styled.div`
   flex: 1;
   max-width: 600px;
   border-right: 1px solid var(--grey3);
+  border-left: 1px solid var(--grey3);
   overflow-y: auto;
   scrollbar-width: none;
 

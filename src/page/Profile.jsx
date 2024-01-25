@@ -34,6 +34,13 @@ export default Profile;
 const StyledProfile = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
   align-items: center;
-  width: 600px;
+  max-width: 600px;
+  border-right: 1px solid var(--grey3);
+  border-left: 1px solid var(--grey3);
+
+  @media screen and (min-width: 700px) {
+    width: 600px;
+  }
 `;

@@ -15,7 +15,6 @@ import Profile from "src/page/Profile.jsx";
 import { Empty } from "src/page/Empty.jsx";
 import { Post } from "src/page/Post.jsx";
 import { Write } from "src/page/Write.jsx";
-import { DateShortcutTest } from "src/page/Test/DateShortCutTest.jsx";
 import { CreateUserTestForm } from "src/page/Test/createUserTestForm.jsx";
 import { LoginTestForm } from "src/page/Test/LoginTestForm.jsx";
 import { ProtectedRoute } from "src/page/ProtectedRoute.jsx";
@@ -80,14 +79,6 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Write />
-          </ProtectedRoute>
-        )
-      },
-      {
-        path: "date",
-        element: (
-          <ProtectedRoute>
-            <DateShortcutTest />
           </ProtectedRoute>
         )
       },
