@@ -15,8 +15,6 @@ import Profile from "src/page/Profile.jsx";
 import { Empty } from "src/page/Empty.jsx";
 import { Post } from "src/page/Post.jsx";
 import { Write } from "src/page/Write.jsx";
-import { CreateUserTestForm } from "src/page/Test/createUserTestForm.jsx";
-import { LoginTestForm } from "src/page/Test/LoginTestForm.jsx";
 import { ProtectedRoute } from "src/page/ProtectedRoute.jsx";
 import Layout from "src/page/Layout.jsx";
 import "src/App.css";
@@ -80,18 +78,6 @@ const router = createBrowserRouter([
           <ProtectedRoute>
             <Write />
           </ProtectedRoute>
-        )
-      },
-      {
-        path: "createUser",
-        element: (
-          <CreateUserTestForm />
-        )
-      },
-      {
-        path: "loginTest",
-        element: (
-          <LoginTestForm />
         )
       },
       {
