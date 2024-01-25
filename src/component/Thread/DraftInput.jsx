@@ -133,15 +133,23 @@ export default DraftInput;
 const StyledDraftForm = styled.form`
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: 0.5rem;
 
+  & > :last-child {
+    margin-top: 0.75rem;
+  }
+  
   div {
-    height: 1.5rem;
+    min-height: 1.5rem;
+    max-width: 100%;
   }
 
   span {
     display: inline-block;
-    min-width: 1.5rem;
+    min-width: 2.5rem;
+    max-width: 100%;
+    word-break: break-all;
   }
 
   & > .postButton {

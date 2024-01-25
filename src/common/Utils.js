@@ -47,3 +47,8 @@ export const timeCalculator = (uploadTime) => {
     return `${uploadMonth} ${uploadDate}`;
   }
 };
+
+export const makeShortEmail = (email) => {
+  const username = email.split('@')[0];
+  return '@' + username;
+};

@@ -9,9 +9,12 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { timeCalculator } from "src/common/Utils.js";
+import { timeCalculator, makeShortEmail } from "src/common/Utils.js";
 import FlexContainer from "src/component/Common/FlexContainer.jsx";
 import TextButton from "src/component/Common/TextButton.jsx";
+import { IconContext } from "react-icons";
+import { BsBookmark, BsBookmarkFill, BsThreeDots } from "react-icons/bs";
+import { FaRegComments } from "react-icons/fa";
 
 const ThreadCard = ({ threadInfo }, ...props) => {
   console.log(`threadInfo: `, threadInfo);
@@ -22,52 +25,53 @@ const ThreadCard = ({ threadInfo }, ...props) => {
 
   const userName = threadInfo ? threadInfo.user_name : "홍길동";
 
-  const makeShortEmail = (email) => {
-    const username = email.split('@')[0];
-    return '@' + username;
-  };
   const shortenedEmail = threadInfo ? makeShortEmail(threadInfo.user_email) : "@test";
 
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
   const threadContent = threadInfo ? threadInfo.thread_content : "빈 카드입니다.";
+  //const commentCount = threadInfo ? threadInfo.comment_count : 0;
+  const commentCount = 0;
+
   const prefix = "#";
-  const commentCount = props.commentCount || 12;
-  const tagList =
-    props.tagList || ["apple", "banana", "orange"].map((tag) => prefix + tag);
+  //let tagList = threadInfo ? threadInfo.tags : ["apple", "banana", "orange"];
+  let tagList = ["apple", "banana", "orange"];
+  tagList = tagList.map((tag) => prefix + tag);
 
   return (
     <StyledThreadCard>
-      <StyledProfile src="./user.png" $size="2.5rem" />
-      <FlexContainer className="contentWrapper" direction="column" align="normal">
-        <FlexContainer
-          className="cardHeader"
-          direction="row"
-          justify="space-between"
-        >
-          <FlexContainer className="meta" direction="row" between="2px">
-            <TextButton className="nickName">{userName}</TextButton>
-            <TextButton>{shortenedEmail}</TextButton>
-            <p className="uploadDate" style={{ fontSize: "12px" }}>{uploadTimeString}</p>
-          </FlexContainer>
-          <FlexContainer direction="row" between="1.25rem">
-            <StyledIcon src="./off_star.png" $size="1.5rem" />
-            <StyledIcon src="./more.png" $size="1.5rem" />
-          </FlexContainer>
-        </FlexContainer>
-        <StyledContetnt>
-          {threadContent}
-        </StyledContetnt>
-        <FlexContainer className="cardFooter" direction="row" justify="space-between">
-          <FlexContainer justify="flex-start" height="1.25rem">
-            <StyledIcon src="comment.png" $size="1.25rem" />
-            <TextButton>{String(commentCount)}</TextButton>
-          </FlexContainer>
-          <FlexContainer className="tagList">
-            {tagList.map((tag, index) => {
-              return <TextButton key={index}>{tag}</TextButton>;
-            })}
-          </FlexContainer>
-        </FlexContainer>
-      </FlexContainer>
+      <IconContext.Provider value={{ size: "1.25rem" }}>
+        <StyledProfile src="./user.png" $size="2.5rem" />
+        <StyledContentWrapper>
+          <StyledContentHeader>
+            <StyledMetaWrapper>
+              <StyledUserName>{userName}</StyledUserName>
+              <StyledShortEmail>{shortenedEmail}</StyledShortEmail>
+              <StyledUploadDate>{uploadTimeString}</StyledUploadDate>
+            </StyledMetaWrapper>
+            <StyledMoreWrapper>
+              {isBookmarked ? <StyledIconWrapper><BsBookmarkFill onClick={() => setIsBookmarked((prev) => !prev)} /></StyledIconWrapper> : <StyledIconWrapper><BsBookmark onClick={() => setIsBookmarked((prev) => !prev)} /></StyledIconWrapper>}
+              <StyledIconWrapper><BsThreeDots /></StyledIconWrapper>
+            </StyledMoreWrapper>
+          </StyledContentHeader>
+          <StyledContentMain>
+            {threadContent}
+          </StyledContentMain>
+          <StyledCardFooter>
+            <StyledCommentWrapper>
+              <StyledIconWrapper>
+                <FaRegComments />
+              </StyledIconWrapper>
+              <StyledCommentCount>{String(commentCount)}</StyledCommentCount>
+            </StyledCommentWrapper>
+            <StyledTagWrapper>
+              {tagList.map((tag, index) => {
+                return <StyledTagButton key={index}>{tag}</StyledTagButton>;
+              })}
+            </StyledTagWrapper>
+          </StyledCardFooter>
+        </StyledContentWrapper>
+      </IconContext.Provider>
     </StyledThreadCard>
   );
 };
@@ -78,15 +82,12 @@ const StyledThreadCard = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-  padding: 1.25rem;
+  padding: 0.75rem 1rem;
   border-bottom: solid 1px var(--grey2);
 
   &:hover {
-    background-color: var(--grey2);
-  }
-
-  .contentWrapper {
-    flex: 1;
+    background-color: var(--grey1);
+    cursor: pointer;
   }
 
   .cardFooter {
@@ -97,19 +98,6 @@ const StyledThreadCard = styled.div`
       }
     }
   }
-
-  .meta {
-    height: 1.25rem;
-    > .uploadDate {
-      display: none;
-      @media screen and (min-width: 768px) {
-        display: inline-block;
-      }
-    }
-    > .nickName {
-      font-weight: bold;
-    }
-  }
 `;
 
 const StyledProfile = styled.img`
@@ -118,13 +106,100 @@ const StyledProfile = styled.img`
   margin-right: 0.75rem;
 `;
 
-const StyledIcon = styled.img`
-  width: ${({$size}) => $size || "1.5rem"};
-  height: ${({$size}) => $size || "1.5rem"};
-`;
+const StyledContentWrapper = styled(FlexContainer)`
+  display: flex;
+  flex-direction: column;
+  align-items: normal;
+  flex: 1;
+`
 
-const StyledContetnt = styled.pre`
+const StyledContentHeader = styled(FlexContainer)`
+  display: flex;
+  justify-content: space-between;
+  height: 1.5rem;
+  font-size: 1rem;
+`
+
+const StyledMetaWrapper = styled(FlexContainer)`
+  display: flex;
+  gap: 4px;
+`
+
+const StyledUserName = styled(TextButton)`
+  font-weight: bold;
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
+const StyledShortEmail = styled(TextButton)`
+  font-size: 0.75rem;
+  color: var(--grey5);
+  &:hover {
+    font-weight: unset;
+  }
+`
+
+const StyledUploadDate = styled.span`
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: inline-block;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--grey5);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`
+
+const StyledMoreWrapper = styled(FlexContainer)`
+  display: flex;
+  gap: 0.75rem;
+`
+
+const StyledIconWrapper = styled(FlexContainer)`
+  border-radius: 9999px;
+  width: 2rem;
+  height: 2rem;
+  background-color: transparent;
+  &:hover {
+    color: var(--main)
+  }
+`
+
+const StyledContentMain = styled.pre`
   display: flex;
   align-items: center;
   white-space: pre-wrap;
 `
+
+const StyledCardFooter = styled(FlexContainer)`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 2rem;
+  gap: 0.5rem;
+`
+
+const StyledCommentWrapper = styled(FlexContainer)`
+  display: flex;
+  justify-content: flex-start;
+  height: 1.25rem;
+  gap: 0.5rem;
+`
+
+const StyledCommentCount = styled(TextButton)`
+  &:hover {
+    font-weight: unset;
+  }
+`
+
+const StyledTagWrapper = styled(FlexContainer)`
+  display: flex;
+  gap: 0.5rem;
+`
+
+const StyledTagButton = styled(TextButton)``

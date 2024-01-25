@@ -101,29 +101,27 @@ const StyledLink = styled.a`
   font-weight: bold;
   &:hover {
     background-color: var(--grey2);
+    cursor: pointer;
   }
 `
 
 const StyledInputContainer = styled.div`
   display: flex;
+  flex: 1;
   padding: 0.75rem 1.25rem;
   border-bottom: 1px solid var(--grey3);
-`
+  `
 
 const StyledImage = styled.img`
+  display: flex;
   width: ${({$size}) => $size || "1.5rem"};
   height: ${({$size}) => $size ||  "1.5rem"};
   margin-right: 0.75rem;
-`
+  `
 
 const StyledInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-`
-
-const StyledPostInput = styled.span`
-  display: inline-block;
-  padding: 0.75rem 0;
-  font-size: 1.25rem;
+  padding: 0.75rem 0 0 0;
 `
