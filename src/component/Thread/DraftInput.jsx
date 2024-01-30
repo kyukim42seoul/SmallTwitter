@@ -34,8 +34,8 @@ const DraftInput = () => {
       };
     };
     return (
-      <div key={uuidv4()} data-rowkey={uuidv4()}>
-        <span key={uuidv4()} ref={refCallback} onKeyDown={handler} contentEditable="true"></span>
+      <div key={uuidv4()} data-rowkey={uuidv4()} onClick={(e) => {e.target.lastElementChild.focus()}}>
+        <span key={uuidv4()} ref={refCallback} onClick={(e) => e.stopPropagation()} onKeyDown={handler} contentEditable="true"></span>
       </div>
     );
   };
@@ -44,8 +44,8 @@ const DraftInput = () => {
   const initLines = () => {
     const firstKey = uuidv4();
     const initialLine = (
-      <div key="0" data-rowkey={firstKey} onClick={() => {}} onChange={(e) => {console.log(e.target.value)}}>
-        <span key={uuidv4()} ref={(ref) => focusRefs.current = [ref]} onKeyDown={handleKeyDown} contentEditable="true"></span>
+      <div key="0" data-rowkey={firstKey} onClick={(e) => {e.target.lastElementChild.focus()}}>
+        <span key={uuidv4()} ref={(ref) => focusRefs.current = [ref]} onClick={(e) => e.stopPropagation()} onKeyDown={handleKeyDown} contentEditable="true"></span>
       </div>
     );
     setLines([initialLine]);
@@ -189,6 +189,9 @@ const StyledDraftForm = styled.form`
   div {
     min-height: 1.5rem;
     max-width: 100%;
+    &:hover {
+      cursor: text;
+    }
   }
 
   span {
