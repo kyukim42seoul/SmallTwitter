@@ -4,6 +4,8 @@ import Button from "src/component/Common/Button.jsx";
 import styled from "styled-components";
 import axios from "axios";
 
+const tagRegex = new RegExp("^ +#[A-Za-z0-9]+ $");
+
 // 게시글 생성 요청
 const createPost = (threadContent) => {
   const currentTime = new Date().toISOString();
@@ -25,17 +27,17 @@ const DraftInput = () => {
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const [Lines, setLines] = useState([]);
   const [prevLines, setPrevLines] = useState([]);
-  let selection = window.getSelection(); // Selection 객체 생성
   const [textAfterCaret, setTextAfterCaret] = useState("");
-  const getNewLine = (index, handler) => {
+  const [caretPosition, setCaretPosition] = useState();
+  const getNewLine = (index, keydownHandler, inputHandler) => {
     const refCallback = (ref) => {
       if (ref) {
         focusRefs.current[index] = ref;
       };
     };
     return (
-      <div key={uuidv4()} data-rowkey={uuidv4()} onClick={(e) => {e.target.lastElementChild.focus()}}>
-        <span key={uuidv4()} ref={refCallback} onClick={(e) => e.stopPropagation()} onKeyDown={handler} contentEditable="true"></span>
+      <div key={uuidv4()} data-rowkey={uuidv4()} onClick={(e) => {e.target.lastElementChild.focus()}} onKeyUp={updateCaretPosition}>
+        <span key={uuidv4()} ref={refCallback} onClick={(e) => e.stopPropagation()} onKeyDown={keydownHandler} onInput={inputHandler} contentEditable="true"></span>
       </div>
     );
   };
@@ -44,8 +46,8 @@ const DraftInput = () => {
   const initLines = () => {
     const firstKey = uuidv4();
     const initialLine = (
-      <div key="0" data-rowkey={firstKey} onClick={(e) => {e.target.lastElementChild.focus()}}>
-        <span key={uuidv4()} ref={(ref) => focusRefs.current = [ref]} onClick={(e) => e.stopPropagation()} onKeyDown={handleKeyDown} contentEditable="true"></span>
+      <div key="0" data-rowkey={firstKey} onClick={(e) => {e.target.lastElementChild.focus()}} onKeyUp={updateCaretPosition}>
+        <span key={uuidv4()} ref={(ref) => focusRefs.current = [ref]} onClick={(e) => e.stopPropagation()} onKeyDown={handleKeyDown} onInput={handleInput} contentEditable="true"></span>
       </div>
     );
     setLines([initialLine]);
@@ -56,6 +58,34 @@ const DraftInput = () => {
     initLines();
   }, []);
   
+  const updateCaretPosition = (event) => {
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+
+    const eventTriggeredElement = event.target;
+    
+    setCaretPosition(range.startOffset);
+  };
+
+  // onInputHandler : 특슈 표현식(#, @, ...) 입력 감지
+  const handleInput = (event) => {
+    console.log("inputing...: ", event.target.innerText);
+    //const selection = window.getSelection();
+    //const range = selection.getRangeAt(0);
+
+    //const textNodeContent = event.target.innerText;
+    //const cursorPosition = range.startOffset;
+
+    //const prevString = textNodeContent.substring(0, cursorPosition);
+    //const afterString = textNodeContent.substring(cursorPosition);
+
+    //console.log("prev/after substring: ", prevString, afterString);
+
+    if (tagRegex.exec(event.target.innerText) !== null) {
+      console.log("Tag generate triggered");
+    };
+  }
+
   const handleKeyDown = (event) => {
     // 라인 추가
     if (event.key === "Enter") {
