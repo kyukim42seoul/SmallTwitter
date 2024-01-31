@@ -1,12 +1,14 @@
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import FlexContainer from "src/component/Common/FlexContainer.jsx";
+
+import { useNavigate } from "react-router-dom";
+
+import styled from "styled-components";
 
 export const Header = () => {
   const navList = ["채팅", "대시보드"];
   const navListMap = {
-    "스레드": "thread",
-    "프로필": "profile",
+    스레드: "thread",
+    프로필: "profile",
   };
   const navigate = useNavigate();
   return (
@@ -38,11 +40,13 @@ export const VerticalHeader = () => {
   return (
     <header>
       <nav>
-        {navList.map((category) => <a>{category}</a>)}
+        {navList.map((category) => (
+          <a>{category}</a>
+        ))}
       </nav>
     </header>
   );
-}
+};
 
 const StyledHeader = styled.div`
   display: flex;

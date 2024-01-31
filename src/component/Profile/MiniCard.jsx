@@ -37,10 +37,10 @@
 /*
   일단은 각 요소에서 논리비교를 하고, 나중엔 컴포넌트에서 미리 비교 후 넘버링에 따른 return 을 다르게 적자.
 */
-
-import styled from "styled-components";
 import FlexContainer from "src/component/Common/FlexContainer.jsx";
 import TextButton from "src/component/Common/TextButton.jsx";
+
+import styled from "styled-components";
 
 /**
  * return customed ThreadCard by self, readOnly, isComment
@@ -81,11 +81,7 @@ const MiniCard = ({ self, readOnly, isComment, ...props }) => {
             글입니다.여기는 글입니다.여기는 글입니다.여기는 글입니다.여기는
             글입니다.여기는 글입니다.여기는 글입니다.
           </pre>
-          <FlexContainer
-            direction="row"
-            justify="right"
-            between="10px"
-          >
+          <FlexContainer direction="row" justify="right" between="10px">
             {" "}
             {/* 별, 더보기 */}
             {!isComment && (
@@ -101,9 +97,7 @@ const MiniCard = ({ self, readOnly, isComment, ...props }) => {
         <FlexContainer direction="row" justify="space-between">
           <FlexContainer>
             <img src="comment.png" width="16px" height="16px" />
-            <TextButton fontSize="16px">
-              {String(commentCount)}
-            </TextButton>
+            <TextButton fontSize="16px">{String(commentCount)}</TextButton>
           </FlexContainer>
           <FlexContainer>
             {tagList.map((tag, index) => {

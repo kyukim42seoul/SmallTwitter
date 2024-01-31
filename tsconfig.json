@@ -1,14 +1,14 @@
 {
-	"compilerOptions": {
-	  "module": "ES2022",
-	  "noImplicitAny": false, // any 타입을 허용할 것인가?
-	  "removeComments": true,
-	  "strictNullChecks": false, // null, undefine 을 엄격하게 확인할 것인가?
-	  "noEmit": true, // typescript 컴파일러가 js 파일 등의 출력물을 생산하지 않게 하는 옵션. 타입 체커로써만 기능.
-	  "allowImportingTsExtensions": true, // ts(tsx) 파일이 다른 ts(tsx) 파일을 import 할 수 있게 할 것인가?
-	  "moduleResolution": "Node",
-	  "jsx": "react-jsx", // jsx 파일을 어떻게 컴파일 할 것인가?
-	  "allowJs": true,
-	},
-	"include": ["src"]
-  }
+  "compilerOptions": {
+    "module": "ES2022",
+    "noImplicitAny": false, // any 타입을 허용할 것인가?
+    "removeComments": true,
+    "strictNullChecks": false, // null, undefine 을 엄격하게 확인할 것인가?
+    "noEmit": true, // typescript 컴파일러가 js 파일 등의 출력물을 생산하지 않게 하는 옵션. 타입 체커로써만 기능.
+    "allowImportingTsExtensions": true, // ts(tsx) 파일이 다른 ts(tsx) 파일을 import 할 수 있게 할 것인가?
+    "moduleResolution": "Node",
+    "jsx": "react-jsx", // jsx 파일을 어떻게 컴파일 할 것인가?
+    "allowJs": true,
+  },
+  "include": ["src"],
+}

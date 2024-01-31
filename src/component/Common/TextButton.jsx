@@ -1,11 +1,7 @@
 import styled from "styled-components";
 
 const TextButton = (props) => {
-  return (
-    <StyledTextButton {...props}>
-      {props.children}
-    </StyledTextButton>
-  );
+  return <StyledTextButton {...props}>{props.children}</StyledTextButton>;
 };
 
 const StyledTextButton = styled.button`

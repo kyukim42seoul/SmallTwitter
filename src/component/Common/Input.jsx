@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 const Input = (props) => {
-  return (
-    <StyledInput {...props} />
-  );
-}
+  return <StyledInput {...props} />;
+};
 
 const StyledInput = styled.input`
   width: 250px;

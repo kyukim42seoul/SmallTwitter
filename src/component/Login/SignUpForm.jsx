@@ -1,18 +1,21 @@
 // onKeyDown 에서 shift 도 이벤트를 발생시키기 때문에 워닝이 발생한다. Enter 를 확인할 다른 방법을 생각해야 한다.
+
 /*
 Uncaught TypeError: inputTypes.contains is not a function
     at isTextElement (<anonymous>:14:31)
     at <anonymous>:31:26
     at <anonymous>:66:3
 */
+import axios from "axios";
+import { isValidForm, keyDownHandler } from "src/common/Utils.js";
+import Button from "src/component/Common/Button.jsx";
+import Input from "src/component/Common/Input.jsx";
+import { emailRegExp, passwordRegExp } from "src/data/regex.js";
 
 import { useState } from "react";
-import axios from "axios";
+
 import styled from "styled-components";
-import { isValidForm, keyDownHandler } from "src/common/Utils.js";
-import { emailRegExp, passwordRegExp } from "src/data/regex.js";
-import Input from "src/component/Common/Input.jsx";
-import Button from "src/component/Common/Button.jsx";
+
 import FlexContainer from "../Common/FlexContainer";
 
 export const SignUpForm = ({ setIsOpen }) => {
@@ -20,29 +23,35 @@ export const SignUpForm = ({ setIsOpen }) => {
   const [userPassword, setUserPassword] = useState("");
   const [checkingPassword, setCheckingPassword] = useState("");
   const [userName, setUserName] = useState("");
-  const allFieldsFilled = userEmail && userPassword && checkingPassword && userName;
+  const allFieldsFilled =
+    userEmail && userPassword && checkingPassword && userName;
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
     console.log(`signup submit occured`);
     // 모든 엔터에서 이벤트 발생 중...
     if (allFieldsFilled) {
-      axios.post("http://localhost:3232/users/signup", {
-        userEmail,
-        userPassword,
-        userName
-      }, {
-        headers: { "Content-Type": `application/json` },
-      })
-      .then(res => {
-        if (res.status === 200) {
-          console.log(res.status, res.data);
-          setIsOpen(false);
-        }
-      })
-      .catch(err => console.error(err.message))
+      axios
+        .post(
+          "http://localhost:3232/users/signup",
+          {
+            userEmail,
+            userPassword,
+            userName,
+          },
+          {
+            headers: { "Content-Type": `application/json` },
+          },
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            console.log(res.status, res.data);
+            setIsOpen(false);
+          }
+        })
+        .catch((err) => console.error(err.message));
     } else {
-      console.log('Please fill all the fields');
+      console.log("Please fill all the fields");
     }
   };
 
@@ -54,7 +63,9 @@ export const SignUpForm = ({ setIsOpen }) => {
             placeholder="이메일을 입력해주세요"
             value={userEmail}
             onKeyDown={(event) => keyDownHandler(event, setUserEmail)}
-            onChange={(e) => {setUserEmail(e.target.value)}}
+            onChange={(e) => {
+              setUserEmail(e.target.value);
+            }}
           />
           {isValidForm(userEmail, emailRegExp) && (
             <Input
@@ -62,7 +73,9 @@ export const SignUpForm = ({ setIsOpen }) => {
               placeholder="비밀번호를 입력해주세요"
               value={userPassword}
               onKeyDown={(event) => keyDownHandler(event, setUserPassword)}
-              onChange={(e) => {setUserPassword(e.target.value)}}
+              onChange={(e) => {
+                setUserPassword(e.target.value);
+              }}
             />
           )}
           {isValidForm(userPassword, passwordRegExp) && (
@@ -70,18 +83,33 @@ export const SignUpForm = ({ setIsOpen }) => {
               type="password"
               placeholder="비밀번호를 확인해주세요"
               value={checkingPassword}
-              onKeyDown={(event) =>
-                keyDownHandler(event, setCheckingPassword)
-              }
-              onChange={(e) => {setCheckingPassword(e.target.value)}}
+              onKeyDown={(event) => keyDownHandler(event, setCheckingPassword)}
+              onChange={(e) => {
+                setCheckingPassword(e.target.value);
+              }}
             />
           )}
           {checkingPassword && !(userPassword === checkingPassword) && (
             <p style={{ color: "red" }}>비밀번호를 다시 확인해주십시오</p>
           )}
-          <Input placeholder="닉네임을 적어주세요" value={userName} onChange={(e) => {setUserName(e.target.value)}} />
-          <Button type="submit" onClick={() => {setIsOpen(false)}}>Submit</Button>
-          <Button type="button" onClick={() => setIsOpen(false)}>close</Button>
+          <Input
+            placeholder="닉네임을 적어주세요"
+            value={userName}
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+          />
+          <Button
+            type="submit"
+            onClick={() => {
+              setIsOpen(false);
+            }}
+          >
+            Submit
+          </Button>
+          <Button type="button" onClick={() => setIsOpen(false)}>
+            close
+          </Button>
         </FlexContainer>
       </StyledSignUpForm>
     </StyledWrapper>

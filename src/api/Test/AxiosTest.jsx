@@ -7,7 +7,7 @@ import axios from "axios";
  * @returns {JSX}
  */
 
-export const AxiosTest = ({payLoad}) => {
+export const AxiosTest = ({ payLoad }) => {
   const sendPost = () => {
     axios
       .post("http://localhost:3000/post", payLoad, {
@@ -26,5 +26,5 @@ export const AxiosTest = ({payLoad}) => {
 export const axiosInstance = axios.create({
   baseURL: "http://localhost:3000",
   timeout: 1000,
-  withCredentials: true
+  withCredentials: true,
 });

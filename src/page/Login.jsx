@@ -1,13 +1,15 @@
-import { useState } from "react";
-import styled from "styled-components";
-import FlexContainer from "src/component/Common/FlexContainer.jsx";
 import Button from "src/component/Common/Button.jsx";
+import FlexContainer from "src/component/Common/FlexContainer.jsx";
 import { LoginForm } from "src/component/Login/LoginForm.jsx";
 import { SignUpForm } from "src/component/Login/SignUpForm.jsx";
 
+import { useState } from "react";
+
+import styled from "styled-components";
+
 const Login = () => {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   return (
     <StyledWrapper>
       <FlexContainer
@@ -16,7 +18,7 @@ const Login = () => {
         between="50px"
         width="100%"
         height="100vh"
-        >
+      >
         <img src="./chat.png" width="100px" height="100px" />
         <LoginForm />
         <Button onClick={() => setIsOpen(true)}>회원가입</Button>

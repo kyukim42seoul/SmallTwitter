@@ -7,7 +7,7 @@ const system = {
   danger,
   dangerLighten,
   dangerDarken,
-  dangerDisabled
+  dangerDisabled,
 };
 
 const greyScale = {
@@ -24,21 +24,17 @@ const brand = {
   primary,
   primaryLigten,
   primaryDarken,
-  primaryDisabled
+  primaryDisabled,
 };
 
 const color = {
   system,
   greyScale,
-  brand
+  brand,
 };
 
-const fontSize = {
+const fontSize = {};
 
-};
-
-const theme = {
-
-};
+const theme = {};
 
 export default theme;

@@ -10,14 +10,13 @@
  * shareCount
  * favoriteCount
  */
-
 import {
-  writers,
-  nicknames,
   emailHead,
   emailTail,
+  nicknames,
   quotes,
   tags,
+  writers,
 } from "src/data/Test/sampleData.js";
 
 const getRandomString = (stringArray) => {
@@ -50,7 +49,7 @@ class threadDataGenerator {
     const dataID = Math.floor(Math.random() * 10000);
     const nickname = getRandomString(nicknames);
     const email = `${getRandomString(emailHead)}@${getRandomString(
-      emailTail
+      emailTail,
     )}}`;
     const content = getRandomString(quotes);
     const threadTags = getRandomStrings(tags, 4);

@@ -2,7 +2,12 @@ body {
   margin: 0;
 }
 
-div, button, input, form, ul, pre {
+div,
+button,
+input,
+form,
+ul,
+pre {
   box-sizing: border-box;
   font-family: inherit;
   margin: 0;
@@ -21,4 +26,3 @@ input {
 textarea {
   border: unset;
 }
-

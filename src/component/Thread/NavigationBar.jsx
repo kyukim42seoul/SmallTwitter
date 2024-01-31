@@ -1,12 +1,13 @@
-import Button from "../Common/Button";
-import FlexContainer from "../Common/FlexContainer.jsx"
-import styled from "styled-components";
-import { GoHome, GoHomeFill, GoBookmark, GoBookmarkFill } from "react-icons/go";
-import { FaRegUser, FaUser } from "react-icons/fa6";
-import { LuLeaf } from "react-icons/lu";
 import { useEffect, useState } from "react";
+import { FaRegUser, FaUser } from "react-icons/fa6";
+import { GoBookmark, GoBookmarkFill, GoHome, GoHomeFill } from "react-icons/go";
+import { LuLeaf } from "react-icons/lu";
 import { useNavigate } from "react-router";
 
+import styled from "styled-components";
+
+import Button from "../Common/Button";
+import FlexContainer from "../Common/FlexContainer.jsx";
 
 const NavigationBar = (props) => {
   const [isHome, setIsHome] = useState(true);
@@ -20,21 +21,21 @@ const NavigationBar = (props) => {
     setIsBookmarks(false);
     setIsProfile(false);
     navigate("/thread");
-  }
+  };
 
   const handleBookmarks = () => {
     setIsHome(false);
     setIsBookmarks(true);
     setIsProfile(false);
     navigate("/bookmarks");
-  }
+  };
 
   const handleProfile = () => {
     setIsHome(false);
     setIsBookmarks(false);
     setIsProfile(true);
     navigate("/profile");
-  }
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,7 +44,9 @@ const NavigationBar = (props) => {
 
     window.addEventListener("resize", handleResize);
 
-    return () => {window.removeEventListener("resize", handleResize)};
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
@@ -54,29 +57,33 @@ const NavigationBar = (props) => {
         </StyledLink>
         <StyledLink className={isHome ? "active" : ""} onClick={handleHome}>
           <StyledInnerBox>
-            {isHome ? <GoHomeFill /> : <GoHome /> }
+            {isHome ? <GoHomeFill /> : <GoHome />}
             <span className="iconText">Home</span>
           </StyledInnerBox>
         </StyledLink>
-        <StyledLink className={isBookmarks ? "active" : ""} onClick={handleBookmarks}>
+        <StyledLink
+          className={isBookmarks ? "active" : ""}
+          onClick={handleBookmarks}
+        >
           <StyledInnerBox>
             {isBookmarks ? <GoBookmarkFill /> : <GoBookmark />}
             <span className="iconText">Bookmarks</span>
           </StyledInnerBox>
         </StyledLink>
-        <StyledLink className={isProfile ? "active" : ""} onClick={handleProfile}>
+        <StyledLink
+          className={isProfile ? "active" : ""}
+          onClick={handleProfile}
+        >
           <StyledInnerBox>
             {isProfile ? <FaUser /> : <FaRegUser />}
             <span className="iconText">Profile</span>
           </StyledInnerBox>
         </StyledLink>
       </StyledNavigationList>
-      <StyledButton>
-        {isShorten ? <LuLeaf /> : "Post"}
-      </StyledButton>
+      <StyledButton>{isShorten ? <LuLeaf /> : "Post"}</StyledButton>
     </StyledNavigationBar>
   );
-}
+};
 
 export default NavigationBar;
 
@@ -103,12 +110,12 @@ const StyledNavigationBar = styled.nav`
       display: unset;
     }
   }
-`
+`;
 const StyledImage = styled.img`
   padding: 0.75rem;
-  width: ${({$size}) => $size || "1.5rem"};
-  height: ${({$size}) => $size || "1.5rem"};
-`
+  width: ${({ $size }) => $size || "1.5rem"};
+  height: ${({ $size }) => $size || "1.5rem"};
+`;
 
 const StyledNavigationList = styled.div`
   display: flex;
@@ -116,7 +123,7 @@ const StyledNavigationList = styled.div`
   .active {
     font-weight: bold;
   }
-`
+`;
 
 const StyledInnerBox = styled.span`
   display: flex;
@@ -129,7 +136,7 @@ const StyledInnerBox = styled.span`
   :first-child {
     margin-right: 0.5rem;
   }
-  `
+`;
 
 const StyledLink = styled.a`
   display: flex;
@@ -142,7 +149,7 @@ const StyledLink = styled.a`
   &:focus ${StyledInnerBox} {
     font-weight: bold;
   }
-  `
+`;
 
 const StyledButton = styled.button`
   background-color: var(--main);
@@ -155,4 +162,4 @@ const StyledButton = styled.button`
   &:hover {
     background-color: var(--mainDarken);
   }
-`
+`;

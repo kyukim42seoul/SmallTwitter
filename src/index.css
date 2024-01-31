@@ -1,30 +1,29 @@
 /* Font */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Noto+Sans:wght@400&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Noto+Sans:wght@400&display=swap");
 
 :root {
   /* Color  */
   --black: #181818;
-  --grey1: #F6F7F9;
-  --grey2: #EEF0F3;
-  --grey3: #D7DBDF; /* border 에 보통 사용 */
-  --grey4: #9FA6AE;
-  --grey5: #757B82;
+  --grey1: #f6f7f9;
+  --grey2: #eef0f3;
+  --grey3: #d7dbdf; /* border 에 보통 사용 */
+  --grey4: #9fa6ae;
+  --grey5: #757b82;
   --white: #ffff;
 
-  --sucess: #5FCB62;
-  --warning: #E7882A;
-  --danger: #E64C40;
-  --dangerLigten: #E76157;
-  --dangerDarken: #C8443A;
-  --dangerDisabled: #F1B0AA;
+  --sucess: #5fcb62;
+  --warning: #e7882a;
+  --danger: #e64c40;
+  --dangerLigten: #e76157;
+  --dangerDarken: #c8443a;
+  --dangerDisabled: #f1b0aa;
 
-  --main: #1E80F0;
-  --mainLighten: #53A4F3;
-  --mainDarken: #0A6CDC;
+  --main: #1e80f0;
+  --mainLighten: #53a4f3;
+  --mainDarken: #0a6cdc;
 
   /* Font  */
-  font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
+  font-family: "Noto Sans KR", "Noto Sans", sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;

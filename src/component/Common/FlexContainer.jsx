@@ -11,7 +11,16 @@ import styled from "styled-components";
  * @returns {JSX}
  */
 
-const FlexContainer = ({direction, justify, align, padding, between, width, height, ...props}) => {
+const FlexContainer = ({
+  direction,
+  justify,
+  align,
+  padding,
+  between,
+  width,
+  height,
+  ...props
+}) => {
   let gap = `0`;
   if (between && direction === "column") {
     gap = `${between} 0 0 0`;
@@ -36,16 +45,16 @@ const FlexContainer = ({direction, justify, align, padding, between, width, heig
 
 const StyledFlexContainer = styled.div`
   display: flex;
-  flex-direction: ${({direction}) => direction || "row"};
-  justify-content: ${({$justify}) => $justify || "center"};
-  align-items: ${({$align}) => $align || "center"};
-  padding: ${({padding}) => padding || "0px"};
-  width: ${({width}) => width || "auto"};
-  height: ${({height}) => height || "auto"};
+  flex-direction: ${({ direction }) => direction || "row"};
+  justify-content: ${({ $justify }) => $justify || "center"};
+  align-items: ${({ $align }) => $align || "center"};
+  padding: ${({ padding }) => padding || "0px"};
+  width: ${({ width }) => width || "auto"};
+  height: ${({ height }) => height || "auto"};
   overflow: auto;
 
   > :nth-child(n + 2) {
-    margin: ${({$between}) => $between || "0px"};
+    margin: ${({ $between }) => $between || "0px"};
   }
 `;
 

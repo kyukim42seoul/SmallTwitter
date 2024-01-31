@@ -7,16 +7,40 @@ import styled from "styled-components";
  * @returns ButtonList in ul tag
  */
 
-export const ButtonList = ({itemList, isClosable=false, setIsOpen=()=>{}, setValue=()=>{}}) => {
+export const ButtonList = ({
+  itemList,
+  isClosable = false,
+  setIsOpen = () => {},
+  setValue = () => {},
+}) => {
   const listHeight = (20 * itemList.length).toString() + "px";
 
   return (
     <StyledList height={listHeight}>
-      {itemList.map((item, index) => <button key={index} onClick={(e)=>{setIsOpen(false); setValue(item);}}>{item}</button>)}
-      {isClosable ? <button onClick={(e) => {e.stopPropagation(); setIsOpen(false)}}>Close</button> : null}
+      {itemList.map((item, index) => (
+        <button
+          key={index}
+          onClick={(e) => {
+            setIsOpen(false);
+            setValue(item);
+          }}
+        >
+          {item}
+        </button>
+      ))}
+      {isClosable ? (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsOpen(false);
+          }}
+        >
+          Close
+        </button>
+      ) : null}
     </StyledList>
   );
-}
+};
 
 const StyledList = styled.ul`
   display: flex;

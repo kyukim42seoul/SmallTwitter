@@ -1,24 +1,25 @@
 /* App : page routing */
+import "src/App.css";
+import { Empty } from "src/page/Empty.jsx";
+import { ErrorPage } from "src/page/ErrorPage.jsx";
+import Layout from "src/page/Layout.jsx";
+import Login from "src/page/Login.jsx";
+import { Post } from "src/page/Post.jsx";
+import Profile from "src/page/Profile.jsx";
+import { ProtectedRoute } from "src/page/ProtectedRoute.jsx";
+import Thread from "src/page/Thread.jsx";
+import { Write } from "src/page/Write.jsx";
 
+import { useEffect, useState } from "react";
 import {
+  Route,
   RouterProvider,
+  Routes,
   createBrowserRouter,
   createRoutesFromElements,
-  Route,
-  Routes,
 } from "react-router-dom";
-import Login from "src/page/Login.jsx";
-import { ErrorPage } from "src/page/ErrorPage.jsx";
-import Thread from "src/page/Thread.jsx";
+
 import Bookmarks from "./page/Bookmarks.jsx";
-import Profile from "src/page/Profile.jsx";
-import { Empty } from "src/page/Empty.jsx";
-import { Post } from "src/page/Post.jsx";
-import { Write } from "src/page/Write.jsx";
-import { ProtectedRoute } from "src/page/ProtectedRoute.jsx";
-import Layout from "src/page/Layout.jsx";
-import "src/App.css";
-import { useEffect, useState } from "react";
 
 const router = createBrowserRouter([
   {
@@ -29,10 +30,10 @@ const router = createBrowserRouter([
       {
         path: "",
         element: (
-        <ProtectedRoute>
-          <Thread />
-        </ProtectedRoute>
-        )
+          <ProtectedRoute>
+            <Thread />
+          </ProtectedRoute>
+        ),
       },
       //{
       //  path: "login",
@@ -43,9 +44,9 @@ const router = createBrowserRouter([
       {
         path: "thread",
         element: (
-        <ProtectedRoute>
-          <Thread />
-        </ProtectedRoute>
+          <ProtectedRoute>
+            <Thread />
+          </ProtectedRoute>
         ),
       },
       {
@@ -54,7 +55,7 @@ const router = createBrowserRouter([
           <ProtectedRoute>
             <Profile />
           </ProtectedRoute>
-        )
+        ),
       },
       {
         path: "empty",
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
           <ProtectedRoute>
             <Empty />
           </ProtectedRoute>
-        )
+        ),
       },
       {
         path: "post",
@@ -70,7 +71,7 @@ const router = createBrowserRouter([
           <ProtectedRoute>
             <Post />
           </ProtectedRoute>
-        )
+        ),
       },
       {
         path: "write",
@@ -78,7 +79,7 @@ const router = createBrowserRouter([
           <ProtectedRoute>
             <Write />
           </ProtectedRoute>
-        )
+        ),
       },
       {
         path: "bookmarks",
@@ -86,19 +87,15 @@ const router = createBrowserRouter([
           <ProtectedRoute>
             <Bookmarks />
           </ProtectedRoute>
-        )
+        ),
       },
-    ]
+    ],
   },
   {
     path: "/login",
-    element: (
-      <Login />
-    ),
-    errorElement: (
-      <ErrorPage />
-    )
-  }
+    element: <Login />,
+    errorElement: <ErrorPage />,
+  },
 ]);
 
 export function App() {

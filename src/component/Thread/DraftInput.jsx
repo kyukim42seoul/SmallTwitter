@@ -1,25 +1,34 @@
-import { useRef, useEffect, useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
-import Button from "src/component/Common/Button.jsx";
-import styled from "styled-components";
 import axios from "axios";
+import Button from "src/component/Common/Button.jsx";
+import { v4 as uuidv4 } from "uuid";
 
-const tagRegex = new RegExp("^ +#[A-Za-z0-9]+ $");
+import { useEffect, useRef, useState } from "react";
+import { Await } from "react-router-dom";
+
+import styled from "styled-components";
+
+const tagRegex = new RegExp("(?:\u00A0|^)#[A-Za-z0-9]+\u00A0");
+//const tagRegex = new RegExp("\u00A0");
 
 // 게시글 생성 요청
-const createPost = (threadContent) => {
+const createPost = async (threadContent) => {
   const currentTime = new Date().toISOString();
   const userId = window.localStorage.getItem("userId");
 
-  axios.post("http://localhost:3232/threads", {
-    uploadTime: currentTime,
-    threadContent,
-    userId
-  }, {
-    headers: { "Content-Type": `application/json` }
-  })
-  .then(res => console.log(res.status, res.data))
-  .catch(error => console.error("ERR_createPost : ", error));
+  const postCreatePromise = await axios
+    .post(
+      "http://localhost:3232/threads",
+      {
+        uploadTime: currentTime,
+        threadContent,
+        userId,
+      },
+      {
+        headers: { "Content-Type": `application/json` },
+      },
+    )
+    .then((res) => console.log(res.status, res.data))
+    .catch((error) => console.error("ERR_createPost : ", error));
 };
 
 const DraftInput = () => {
@@ -33,11 +42,25 @@ const DraftInput = () => {
     const refCallback = (ref) => {
       if (ref) {
         focusRefs.current[index] = ref;
-      };
+      }
     };
     return (
-      <div key={uuidv4()} data-rowkey={uuidv4()} onClick={(e) => {e.target.lastElementChild.focus()}} onKeyUp={updateCaretPosition}>
-        <span key={uuidv4()} ref={refCallback} onClick={(e) => e.stopPropagation()} onKeyDown={keydownHandler} onInput={inputHandler} contentEditable="true"></span>
+      <div
+        key={uuidv4()}
+        data-rowkey={uuidv4()}
+        onClick={(e) => {
+          e.target.lastElementChild.focus();
+        }}
+        onKeyUp={updateCaretPosition}
+      >
+        <span
+          key={uuidv4()}
+          ref={refCallback}
+          onClick={(e) => e.stopPropagation()}
+          onKeyDown={keydownHandler}
+          onInput={inputHandler}
+          contentEditable="true"
+        ></span>
       </div>
     );
   };
@@ -46,30 +69,47 @@ const DraftInput = () => {
   const initLines = () => {
     const firstKey = uuidv4();
     const initialLine = (
-      <div key="0" data-rowkey={firstKey} onClick={(e) => {e.target.lastElementChild.focus()}} onKeyUp={updateCaretPosition}>
-        <span key={uuidv4()} ref={(ref) => focusRefs.current = [ref]} onClick={(e) => e.stopPropagation()} onKeyDown={handleKeyDown} onInput={handleInput} contentEditable="true"></span>
+      <div
+        key="0"
+        data-rowkey={firstKey}
+        onClick={(e) => {
+          e.target.lastElementChild.focus();
+        }}
+        onKeyUp={updateCaretPosition}
+      >
+        <span
+          key={uuidv4()}
+          ref={(ref) => (focusRefs.current = [ref])}
+          onClick={(e) => e.stopPropagation()}
+          onKeyDown={handleKeyDown}
+          onInput={handleInput}
+          contentEditable="true"
+        ></span>
       </div>
     );
     setLines([initialLine]);
   };
-  
+
   // 초기 라인 세팅
   useEffect(() => {
     initLines();
   }, []);
-  
+
   const updateCaretPosition = (event) => {
     const selection = window.getSelection();
     const range = selection.getRangeAt(0);
 
     const eventTriggeredElement = event.target;
-    
+
     setCaretPosition(range.startOffset);
   };
 
   // onInputHandler : 특슈 표현식(#, @, ...) 입력 감지
   const handleInput = (event) => {
-    console.log("inputing...: ", event.target.innerText);
+    console.log(
+      `inputing...: "${event.target.textContent}"`,
+      tagRegex.exec(event.target.textContent),
+    );
     //const selection = window.getSelection();
     //const range = selection.getRangeAt(0);
 
@@ -81,34 +121,37 @@ const DraftInput = () => {
 
     //console.log("prev/after substring: ", prevString, afterString);
 
-    if (tagRegex.exec(event.target.innerText) !== null) {
-      console.log("Tag generate triggered");
-    };
-  }
+    //if (tagRegex.exec(event.target.innerText) !== null) {
+    //  console.log("Tag generate triggered");
+    //};
+  };
 
   const handleKeyDown = (event) => {
     // 라인 추가
     if (event.key === "Enter") {
       event.preventDefault();
-      
+
       // 각 클로저에서 최신의 Lines 상태를 받은 스코프
       setLines((prev) => {
-        
         // 자신의 인덱스 찾기
         const currentDiv = event.target.parentElement;
         const currentRowKey = currentDiv.getAttribute("data-rowkey");
-        
+
         let currentIndex = -1;
-        
+
         prev.forEach((line, index) => {
           if (line.props["data-rowkey"] == currentRowKey) {
             currentIndex = index;
             setFocusedIndex(currentIndex);
-          };
+          }
         });
-        
+
         // ref 자리 준비
-        focusRefs.current = [...focusRefs.current.slice(0, currentIndex + 1), null, ...focusRefs.current.slice(currentIndex + 1)];
+        focusRefs.current = [
+          ...focusRefs.current.slice(0, currentIndex + 1),
+          null,
+          ...focusRefs.current.slice(currentIndex + 1),
+        ];
 
         // 새 라인 만들기 & newRef 삽입 to (currentIndex + 1)
         const newLine = getNewLine(currentIndex + 1, handleKeyDown);
@@ -117,9 +160,8 @@ const DraftInput = () => {
         const updateLines = [
           ...prev.slice(0, currentIndex + 1),
           newLine,
-          ...prev.slice(currentIndex + 1)
+          ...prev.slice(currentIndex + 1),
         ];
-
 
         return updateLines;
       });
@@ -141,7 +183,7 @@ const DraftInput = () => {
             if (line.props["data-rowkey"] == currentRowKey) {
               currentIndex = index;
               setFocusedIndex(currentIndex);
-            };
+            }
           });
 
           // 삭제를 시도한 라인이 첫번째 줄인 경우
@@ -149,18 +191,22 @@ const DraftInput = () => {
             return prev;
           }
 
-          const updateLines = prev.filter((line, index) => index !== currentIndex);
+          const updateLines = prev.filter(
+            (line, index) => index !== currentIndex,
+          );
           focusRefs.current.splice(currentIndex, 1);
 
           return updateLines;
-        })
+        });
       }
     }
   };
 
   // 라인별 문장 합치기
   const concatenateLines = () => {
-    const allLinesContent = focusRefs.current.map(span => span.innerText).join('\n');
+    const allLinesContent = focusRefs.current
+      .map((span) => span.innerText)
+      .join("\n");
 
     return allLinesContent;
   };
@@ -172,7 +218,7 @@ const DraftInput = () => {
     });
 
     focusRefs.current = [focusRefs.current[0]]; // 이러면 남은 요소는 알아서 정리가 되나...? 메모리 누수 나지 않나.
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -181,14 +227,16 @@ const DraftInput = () => {
     createPost(fullText);
     clearText();
     initLines();
-  }
-  
+  };
+
   // 포커스 조절
   useEffect(() => {
     if (focusRefs && focusRefs.current.length > 1) {
-      if (prevLines.length < Lines.length) {            // 라인이 추가된 경우
+      if (prevLines.length < Lines.length) {
+        // 라인이 추가된 경우
         focusRefs.current[focusedIndex + 1].focus();
-      } else if (prevLines.length > Lines.length) {     // 라인이 삭제된 경우
+      } else if (prevLines.length > Lines.length) {
+        // 라인이 삭제된 경우
         const focusIndex = focusedIndex != 0 ? focusedIndex - 1 : 0;
         focusRefs.current[focusIndex].focus();
       }
@@ -199,7 +247,14 @@ const DraftInput = () => {
   return (
     <StyledDraftForm onSubmit={handleSubmit}>
       {Lines && Lines.map((line, index) => line)}
-      <Button className="postButton" $border="0" $backgroundColor="var(--main)" color="var(--white)">Post</Button>
+      <Button
+        className="postButton"
+        $border="0"
+        $backgroundColor="var(--main)"
+        color="var(--white)"
+      >
+        Post
+      </Button>
     </StyledDraftForm>
   );
 };
@@ -215,7 +270,7 @@ const StyledDraftForm = styled.form`
   & > :last-child {
     margin-top: 0.75rem;
   }
-  
+
   div {
     min-height: 1.5rem;
     max-width: 100%;
@@ -234,4 +289,4 @@ const StyledDraftForm = styled.form`
   & > .postButton {
     align-self: flex-end;
   }
-`
+`;

@@ -1,22 +1,24 @@
-import { useNavigate } from "react-router-dom";
-
-import "./Post.css"
+import axios from "axios";
 
 import { FiArrowLeft } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
-import axios from "axios";
+import "./Post.css";
 
 export const Post = () => {
   const navigate = useNavigate();
   const onClickHandler = () => {};
   return (
     <div className="post-wrapper">
-      <header style={{ display:"flex", alignItems:"center", height:"54px"}}>
+      <header style={{ display: "flex", alignItems: "center", height: "54px" }}>
         <div>
-          <button onClick={()=>navigate(-1)} style={{width:"54px", height:"54px"}}>
-            <FiArrowLeft size={"20px"}/>
+          <button
+            onClick={() => navigate(-1)}
+            style={{ width: "54px", height: "54px" }}
+          >
+            <FiArrowLeft size={"20px"} />
           </button>
-          <span style={{fontSize:"2em", fontWeight:"bold"}}>Post</span>
+          <span style={{ fontSize: "2em", fontWeight: "bold" }}>Post</span>
         </div>
         <div className="post-header-right">
           <button>Draft</button>
@@ -30,9 +32,9 @@ export const Post = () => {
           </button>
         </div>
         <div className="main-right">
-          <textarea placeholder="What's happening?"/>
+          <textarea placeholder="What's happening?" />
         </div>
       </main>
     </div>
   );
-}
+};

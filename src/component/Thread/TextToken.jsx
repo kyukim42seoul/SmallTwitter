@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 const TextNode = (props) => {
   return (
@@ -8,6 +8,4 @@ const TextNode = (props) => {
 
 export default TextNode;
 
-const StyledTextNode = styled.span`
-  
-`
+const StyledTextNode = styled.span``;
