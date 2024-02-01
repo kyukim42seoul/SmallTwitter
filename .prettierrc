@@ -11,6 +11,8 @@
     "<THIRD_PARTY_MODULES>",
     "react",
     "react-router-dom",
+    "axios",
+    "uuid",
     "styled-components",
     "^@/page/(.*)$",
     "^@/component/(.*)$",

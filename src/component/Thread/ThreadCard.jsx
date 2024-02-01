@@ -18,7 +18,6 @@ import { FaRegComments } from "react-icons/fa";
 import styled from "styled-components";
 
 const ThreadCard = ({ threadInfo }, ...props) => {
-  console.log(`threadInfo: `, threadInfo);
 
   // 시간 관련 처리
   const uploadTime = threadInfo ? new Date(threadInfo.upload_time) : new Date();
